@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sulage Caffe & Billyard</title>
+
+<style>
+:root{
+  --bg:#F3ECDC;
+  --card:#E6D5BE;
+  --text:#4B3621;
+  --accent:#8B5E3C;
+}
+
+*{box-sizing:border-box;font-family:Poppins,Arial,sans-serif}
+
+body{margin:0;background:var(--bg);color:var(--text)}
+
+.container{max-width:480px;margin:auto;padding:20px}
+
+header{text-align:center;margin-bottom:20px}
+header img{width:90px}
+header h1{margin:10px 0 0}
+
+.card{
+  background:var(--card);
+  border-radius:20px;
+  padding:16px;
+  margin-bottom:16px;
+  box-shadow:0 8px 20px rgba(0,0,0,.15);
+}
+
+.menu-item{
+  display:flex;
+  gap:12px;
+  margin-bottom:12px;
+}
+
+.menu-item img{
+  width:70px;
+  height:70px;
+  border-radius:14px;
+  object-fit:cover;
+}
+
+.menu-info{flex:1}
+.price{color:var(--accent);font-weight:bold}
+
+input,textarea{
+  width:100%;
+  padding:10px;
+  border-radius:12px;
+  border:1px solid #cbb89e;
+  background:#fffaf3;
+  margin-top:8px;
+}
+
+.total{text-align:right;font-size:18px;margin-top:10px}
+
+button{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:16px;
+  background:linear-gradient(135deg,#8B5E3C,#6f4428);
+  color:white;
+  font-size:18px;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<header>
+  <img src="logo.png">
+  <h1>Sulage Caffe & Billyard</h1>
+  <p>☕ Order Langsung dari Meja</p>
+</header>
+
+<div class="card">
+  <input id="nama" placeholder="Nama">
+  <input id="meja" placeholder="Meja" readonly>
+</div>
+
+<!-- COFFEE -->
+<div class="card">
+<h3>☕ Coffee</h3>
+
+<div class="menu-item">
+<input type="checkbox" data-price="18000" value="Espresso">
+<img src="espresso.jpg">
+<div class="menu-info">
+<strong>Espresso</strong><br>
+<span class="price">Rp18.000</span>
+</div>
+</div>
+
+<div class="menu-item">
+<input type="checkbox" data-price="22000" value="Cappuccino">
+<img src="cappuccino.jpg">
+<div class="menu-info">
+<strong>Cappuccino</strong><br>
+<span class="price">Rp22.000</span>
+</div>
+</div>
+
+<div class="menu-item">
+<input type="checkbox" data-price="22000" value="Latte">
+<img src="latte.jpg">
+<div class="menu-info">
+<strong>Latte</strong><br>
+<span class="price">Rp22.000</span>
+</div>
+</div>
+</div>
+
+<!-- NON COFFEE -->
+<div class="card">
+<h3>🥛 Non-Coffee</h3>
+
+<div class="menu-item">
+<input type="checkbox" data-price="15000" value="Chocolate">
+<img src="chocolate.jpg">
+<div class="menu-info">
+<strong>Chocolate</strong><br>
+<span class="price">Rp15.000</span>
+</div>
+</div>
+
+<div class="menu-item">
+<input type="checkbox" data-price="15000" value="Matcha">
+<img src="matcha.jpg">
+<div class="menu-info">
+<strong>Matcha</strong><br>
+<span class="price">Rp15.000</span>
+</div>
+</div>
+</div>
+
+<!-- MANUAL BREW -->
+<div class="card">
+<h3>🫖 Manual Brew</h3>
+
+<div class="menu-item">
+<input type="checkbox" data-price="25000" value="V60">
+<img src="v60.jpg">
+<div class="menu-info">
+<strong>V60</strong><br>
+<span class="price">Rp25.000</span>
+</div>
+</div>
+
+<div class="menu-item">
+<input type="checkbox" data-price="25000" value="Japanese">
+<img src="japanese.jpg">
+<div class="menu-info">
+<strong>Japanese</strong><br>
+<span class="price">Rp25.000</span>
+</div>
+</div>
+</div>
+
+<!-- SNACK -->
+<div class="card">
+<h3>🍪 Snack</h3>
+
+<div class="menu-item">
+<input type="checkbox" data-price="12000" value="Kentang Goreng">
+<img src="kentang.jpg">
+<div class="menu-info">
+<strong>Kentang Goreng</strong><br>
+<span class="price">Rp12.000</span>
+</div>
+</div>
+
+<div class="menu-item">
+<input type="checkbox" data-price="10000" value="Roti Bakar">
+<img src="rotibakar.jpg">
+<div class="menu-info">
+<strong>Roti Bakar</strong><br>
+<span class="price">Rp10.000</span>
+</div>
+</div>
+</div>
+
+<div class="card">
+<textarea id="catatan" placeholder="Catatan (less sugar, hot/ice, dll)"></textarea>
+<div class="total">Total: <span id="total">Rp0</span></div>
+<button onclick="kirimWA()">Pesan via WhatsApp</button>
+</div>
+
+</div>
+
+<script>
+const cbs=document.querySelectorAll('input[type=checkbox]');
+const totalEl=document.getElementById("total");
+
+cbs.forEach(c=>c.addEventListener("change",()=>{
+  let t=0;cbs.forEach(x=>x.checked&&(t+=+x.dataset.price));
+  totalEl.innerText="Rp"+t.toLocaleString("id-ID");
+}));
+
+const p=new URLSearchParams(location.search);
+const meja=p.get("meja");
+if(meja)document.getElementById("meja").value=meja;
+
+function kirimWA(){
+  const nama=document.getElementById("nama").value;
+  const cat=document.getElementById("catatan").value;
+  let list="";
+  cbs.forEach(x=>x.checked&&(list+="- "+x.value+"%0A"));
+  if(!nama||!list){alert("Lengkapi data");return;}
+
+  const admin="6282136930569";
+  const msg=`☕ PESANAN SULAGE CAFFE & BILLYARD%0A
+Nama: ${nama}%0A
+Meja: ${meja}%0A%0A
+Pesanan:%0A${list}%0ACatatan: ${cat}`;
+
+  window.open("https://wa.me/"+admin+"?text="+msg,"_blank");
+}
+</script>
+</body>
+</html>
