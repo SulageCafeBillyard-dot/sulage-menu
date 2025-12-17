@@ -11,10 +11,11 @@ body{margin:0;background:var(--bg);color:var(--text)}
 .container{max-width:480px;margin:auto;padding:20px}
 header{text-align:center;margin-bottom:20px}
 .card{background:var(--card);border-radius:20px;padding:16px;margin-bottom:16px;box-shadow:0 8px 20px rgba(0,0,0,.15)}
-.menu-item{margin-bottom:10px}
-.menu-row{display:flex;justify-content:space-between;align-items:center;gap:6px}
+.menu-item{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.menu-item label{flex:1;display:flex;justify-content:space-between;cursor:pointer}
 .price{color:var(--accent);font-weight:bold}
-select,input{padding:6px;border-radius:8px;border:1px solid #cbb89e}
+.menu-row{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-bottom:6px}
+select,input[type=checkbox]{padding:6px}
 .total{text-align:right;font-size:18px;margin-top:10px}
 button{width:100%;padding:14px;border:none;border-radius:16px;background:linear-gradient(135deg,#8B5E3C,#6f4428);color:white;font-size:18px;font-weight:bold}
 </style>
@@ -32,36 +33,36 @@ button{width:100%;padding:14px;border:none;border-radius:16px;background:linear-
 
 <!-- COFFEE -->
 <div class="card"><h3>☕ Coffee</h3>
-<div class="menu-item" data-name="Aren Coffee" data-price="28000">Aren Coffee <span class="price">28k</span></div>
-<div class="menu-item" data-name="Hazelnut Coffee" data-price="28000">Hazelnut Coffee <span class="price">28k</span></div>
-<div class="menu-item" data-name="Pandan Coffee" data-price="28000">Pandan Coffee <span class="price">28k</span></div>
-<div class="menu-item" data-name="Mocha Latte" data-price="28000">Mocha Latte <span class="price">28k</span></div>
-<div class="menu-item" data-name="Caffe Latte" data-price="28000">Caffe Latte <span class="price">28k</span></div>
-<div class="menu-item" data-name="Vanilla Latte" data-price="28000">Vanilla Latte <span class="price">28k</span></div>
-<div class="menu-item" data-name="Americano" data-price="28000">Americano <span class="price">28k</span></div>
-<div class="menu-item" data-name="Espresso" data-price="28000">Espresso <span class="price">28k</span></div>
+<div class="menu-item"><input type="checkbox" data-name="Aren Coffee" data-price="28000"> <label>Aren Coffee <span class="price">28k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-name="Hazelnut Coffee" data-price="28000"> <label>Hazelnut Coffee <span class="price">28k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-name="Pandan Coffee" data-price="28000"> <label>Pandan Coffee <span class="price">28k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-name="Mocha Latte" data-price="28000"> <label>Mocha Latte <span class="price">28k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-name="Caffe Latte" data-price="28000"> <label>Caffe Latte <span class="price">28k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-name="Vanilla Latte" data-price="28000"> <label>Vanilla Latte <span class="price">28k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-name="Americano" data-price="28000"> <label>Americano <span class="price">28k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-name="Espresso" data-price="28000"> <label>Espresso <span class="price">28k</span></label></div>
 </div>
 
 <!-- NON COFFEE -->
 <div class="card"><h3>🥛 Non-Coffee</h3>
-<div class="menu-item" data-name="Chocolate" data-price="20000">Chocolate <span class="price">20k</span></div>
-<div class="menu-item" data-name="Matcha" data-price="20000">Matcha <span class="price">20k</span></div>
+<div class="menu-item"><input type="checkbox" data-name="Chocolate" data-price="20000"> <label>Chocolate <span class="price">20k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-name="Matcha" data-price="20000"> <label>Matcha <span class="price">20k</span></label></div>
 </div>
 
 <!-- MANUAL BREW -->
 <div class="card"><h3>🫖 Manual Brew</h3>
-<div class="menu-item" data-name="V60" data-price="25000">V60 <span class="price">25k</span></div>
-<div class="menu-item" data-name="Japanese" data-price="25000">Japanese <span class="price">25k</span></div>
+<div class="menu-item"><input type="checkbox" data-name="V60" data-price="25000"> <label>V60 <span class="price">25k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-name="Japanese" data-price="25000"> <label>Japanese <span class="price">25k</span></label></div>
 </div>
 
 <!-- SNACK -->
 <div class="card"><h3>🍪 Snack</h3>
-<div class="menu-item" data-name="Kentang Goreng" data-price="12000">Kentang Goreng <span class="price">12k</span></div>
-<div class="menu-item" data-name="Roti Bakar" data-price="10000">Roti Bakar <span class="price">10k</span></div>
+<div class="menu-item"><input type="checkbox" data-name="Kentang Goreng" data-price="12000"> <label>Kentang Goreng <span class="price">12k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-name="Roti Bakar" data-price="10000"> <label>Roti Bakar <span class="price">10k</span></label></div>
 </div>
 
 <div class="card">
-<h3>📝 Pesanan</h3>
+<h3>📝 Detail Pesanan</h3>
 <div id="orders"></div>
 <textarea id="catatan" placeholder="Catatan (less sugar, hot/ice, dll)" style="width:100%;margin-top:8px"></textarea>
 <div class="total">Total: <span id="total">Rp0</span></div>
@@ -70,29 +71,29 @@ button{width:100%;padding:14px;border:none;border-radius:16px;background:linear-
 </div>
 
 <script>
-const menuItems=document.querySelectorAll('.menu-item');
+const checks=document.querySelectorAll('input[type=checkbox]');
 const orders=document.getElementById('orders');
 const totalEl=document.getElementById('total');
-let cart=[];
+let cart={};
 
-menuItems.forEach(item=>{
-  item.addEventListener('click',()=>{
-    const name=item.dataset.name;
-    const price=+item.dataset.price;
-    cart.push({name,price,qty:1,temp:'Hot'});
+checks.forEach(ch=>{
+  ch.addEventListener('change',()=>{
+    const name=ch.dataset.name;
+    const price=+ch.dataset.price;
+    if(ch.checked){cart[name]={price,qty:1,temp:'Hot'};} else delete cart[name];
     render();
   });
 });
 
 function render(){
   orders.innerHTML=''; let total=0;
-  cart.forEach((c,i)=>{
-    total+=c.price*c.qty;
+  Object.keys(cart).forEach((k,i)=>{
+    const c=cart[k]; total+=c.price*c.qty;
     orders.innerHTML+=`
     <div class="menu-row">
-      ${c.name}
-      <select onchange="cart[${i}].temp=this.value;render()"><option>Hot</option><option>Ice</option></select>
-      <select onchange="cart[${i}].qty=this.value;render()"><option>1</option><option>2</option><option>3</option></select>
+      ${k}
+      <select onchange="cart['${k}'].temp=this.value;render()"><option>Hot</option><option>Ice</option></select>
+      <select onchange="cart['${k}'].qty=this.value;render()"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option></select>
       Rp${(c.price*c.qty).toLocaleString('id-ID')}
     </div>`;
   });
@@ -104,9 +105,9 @@ const meja=p.get('meja'); if(meja)document.getElementById('meja').value=meja;
 
 function kirimWA(){
   const nama=document.getElementById('nama').value;
-  if(!nama||cart.length===0){alert('Lengkapi pesanan');return;}
+  if(!nama||Object.keys(cart).length===0){alert('Lengkapi pesanan');return;}
   let text=''; let total=0;
-  cart.forEach(c=>{total+=c.price*c.qty;text+=`- ${c.name} (${c.temp}) x${c.qty} = Rp${(c.price*c.qty).toLocaleString('id-ID')}%0A`;});
+  Object.keys(cart).forEach(k=>{const c=cart[k]; total+=c.price*c.qty; text+=`- ${k} (${c.temp}) x${c.qty} = Rp${(c.price*c.qty).toLocaleString('id-ID')}%0A`;});
   const admin='6282136930569';
   const msg=`☕ PESANAN SULAGE CAFFE & BILLYARD%0A
 Nama: ${nama}%0AMeja: ${meja||'-'}%0A%0APesanan:%0A${text}%0ATotal: Rp${total.toLocaleString('id-ID')}`;
