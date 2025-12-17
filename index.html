@@ -170,21 +170,31 @@ checks.forEach(ch=>{
 });
 
 function render(){
-  orders.innerHTML=''; let total=0;
+  orders.innerHTML='';
+  let total=0;
+
   Object.keys(cart).forEach(k=>{
-    const c=cart[k]; total+=c.price*c.qty;
+    const c=cart[k];
+    total+=c.price*c.qty;
+
     orders.innerHTML+=`
-    <div class="menu-row">
-      ${k}
-      <select onchange="cart['${k}'].temp=this.value;render()"><option>Hot</option><option>Ice</option></select>
-      <select onchange="cart['${k}'].qty=this.value;render()">
-        <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option>
-      </select>
-      Rp${(c.price*c.qty).toLocaleString('id-ID')}
-    </div>`;
+      <div class="menu-row">
+        ${k}
+        <select onchange="cart['${k}'].temp=this.value;render()">
+          <option>Hot</option>
+          <option>Ice</option>
+        </select>
+        <select onchange="cart['${k}'].qty=parseInt(this.value);render()">
+          <option>1</option><option>2</option><option>3</option>
+          <option>4</option><option>5</option><option>6</option><option>7</option>
+        </select>
+        Rp${(c.price*c.qty).toLocaleString('id-ID')}
+      </div>`;
   });
+
   totalEl.innerText='Rp'+total.toLocaleString('id-ID');
 }
+
 
 function kirimWA(){
   const nama = document.getElementById('nama').value;
@@ -224,3 +234,4 @@ Total: Rp${total.toLocaleString('id-ID')}`;
     '_blank'
   );
 }
+
