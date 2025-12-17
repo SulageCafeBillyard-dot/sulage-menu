@@ -103,16 +103,43 @@ function render(){
 const p=new URLSearchParams(location.search);
 const meja=p.get('meja'); if(meja)document.getElementById('meja').value=meja;
 
+<script>
 function kirimWA(){
-  const nama=document.getElementById('nama').value;
-  if(!nama||Object.keys(cart).length===0){alert('Lengkapi pesanan');return;}
-  let text=''; let total=0;
-  Object.keys(cart).forEach(k=>{const c=cart[k]; total+=c.price*c.qty; text+=`- ${k} (${c.temp}) x${c.qty} = Rp${(c.price*c.qty).toLocaleString('id-ID')}%0A`;});
-  const admin='6282136930569';
-  const msg=`☕ PESANAN SULAGE CAFFE & BILLYARD%0A
-Nama: ${nama}%0AMeja: ${meja||'-'}%0A%0APesanan:%0A${text}%0ATotal: Rp${total.toLocaleString('id-ID')}`;
-  window.open('https://wa.me/'+admin+'?text='+msg,'_blank');
+  const nama = document.getElementById('nama').value;
+  if(!nama || Object.keys(cart).length === 0){
+    alert('Lengkapi pesanan');
+    return;
+  }
+
+  let text = '';
+  let total = 0;
+
+  Object.keys(cart).forEach(k=>{
+    const c = cart[k];
+    const subtotal = c.price * c.qty;
+    total += subtotal;
+    text += `- ${k} (${c.temp}) x${c.qty} = Rp${subtotal.toLocaleString('id-ID')}\n`;
+  });
+
+  const meja = document.getElementById('meja').value || '-';
+  const catatan = document.getElementById('catatan').value || '-';
+
+  const pesan =
+`☕ PESANAN SULAGE CAFFE & BILLYARD
+Nama: ${nama}
+Meja: ${meja}
+
+Pesanan:
+${text}
+Catatan: ${catatan}
+Total: Rp${total.toLocaleString('id-ID')}
+`;
+
+  const admin = '6282136930569';
+  const url = 'https://wa.me/' + admin + '?text=' + encodeURIComponent(pesan);
+  window.open(url, '_blank');
 }
 </script>
 </body>
 </html>
+
