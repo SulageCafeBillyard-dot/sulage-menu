@@ -4,8 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sulage Caffe & Billyard</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
 <style>
 :root{--bg:#F3ECDC;--card:#E6D5BE;--text:#4B3621;--accent:#8B5E3C}
 *{box-sizing:border-box;font-family:Poppins,Arial,sans-serif}
@@ -21,30 +19,6 @@ h3,h4{margin:8px 0}
 select,input[type=checkbox]{padding:4px}
 .total{text-align:right;font-size:18px;margin-top:10px}
 button{width:100%;padding:14px;border:none;border-radius:16px;background:linear-gradient(135deg,#8B5E3C,#6f4428);color:white;font-size:18px;font-weight:bold}
-/* ===== JUDUL MENU ===== */
-.title-main{
-  font-family:'Playfair Display', serif;
-  font-size:46px;
-  font-weight:900;
-  letter-spacing:4px;
-  color:#4b2e16;
-}
-
-.title-sub{
-  font-family:'Playfair Display', serif;
-  font-size:18px;
-  letter-spacing:3px;
-  color:#7a5632;
-}
-  
-body{
-  background:
-    linear-gradient(rgba(243,236,220,0.95), rgba(243,236,220,0.95)),
-    url('https://i.imgur.com/9Z3KqYp.png');
-  background-size: cover;
-  background-attachment: fixed;
-}
-
 </style>
 </head>
 <body>
@@ -168,9 +142,15 @@ body{
 <div class="card">
 <h3>📝 Detail Pesanan</h3>
 <div id="orders"></div>
+
+<h4>💳 Metode Pembayaran</h4>
+<label><input type="radio" name="payment" value="Cash" checked> Cash</label><br>
+<label><input type="radio" name="payment" value="Transfer"> Transfer</label><br>
+<label><input type="radio" name="payment" value="QRIS"> QR / QRIS</label>
+
 <textarea id="catatan" placeholder="Catatan (pedas, less sugar, dll)" style="width:100%;margin-top:8px"></textarea>
 <div class="total">Total: <span id="total">Rp0</span></div>
-<button onclick="kirimWA()">Pesan via WhatsApp</button>
+<button onclick="kirimWA()">Konfirmasi ke Admin (WhatsApp)</button>
 </div>
 </div>
 
@@ -207,16 +187,40 @@ function render(){
 }
 
 function kirimWA(){
-  const nama=document.getElementById('nama').value;
-  const meja=document.getElementById('meja').value || '-';
-  if(!nama||Object.keys(cart).length===0){alert('Lengkapi pesanan');return;}
-  let text=''; let total=0;
-  Object.keys(cart).forEach(k=>{const c=cart[k]; const sub=c.price*c.qty; total+=sub; text+=`- ${k} (${c.temp}) x${c.qty} = Rp${sub.toLocaleString('id-ID')}\n`;});
-  const pesan=`☕ PESANAN SULAGE CAFFE & BILLYARD\nNama: ${nama}\nMeja: ${meja}\n\nPesanan:\n${text}\nTotal: Rp${total.toLocaleString('id-ID')}`;
-  window.open('https://wa.me/6282136930569?text='+encodeURIComponent(pesan),'_blank');
+  const nama = document.getElementById('nama').value;
+  const meja = document.getElementById('meja').value || '-';
+  const catatan = document.getElementById('catatan').value;
+  const payment = document.querySelector('input[name=payment]:checked').value;
+
+  if(!nama || Object.keys(cart).length === 0){
+    alert('Lengkapi pesanan');
+    return;
+  }
+
+  let text = '';
+  let total = 0;
+
+  Object.keys(cart).forEach(k=>{
+    const c = cart[k];
+    const sub = c.price * c.qty;
+    total += sub;
+    text += `- ${k} (${c.temp}) x${c.qty} = Rp${sub.toLocaleString('id-ID')}\n`;
+  });
+
+  const pesan =
+`☕ PESANAN SULAGE CAFE & BILLYARD
+Nama: ${nama}
+Meja: ${meja}
+
+Pesanan:
+${text}
+Metode Bayar: ${payment}
+Catatan: ${catatan || '-'}
+
+Total: Rp${total.toLocaleString('id-ID')}`;
+
+  window.open(
+    'https://wa.me/6282136930569?text=' + encodeURIComponent(pesan),
+    '_blank'
+  );
 }
-</script>
-</body>
-</html>
-
-
