@@ -159,6 +159,8 @@ const checks=document.querySelectorAll('input[type=checkbox]');
 const orders=document.getElementById('orders');
 const totalEl=document.getElementById('total');
 let cart={};
+const orders = document.getElementById('orders');
+const totalEl = document.getElementById('total');
 
 checks.forEach(ch=>{
   ch.addEventListener('change',()=>{
@@ -245,5 +247,6 @@ Total: Rp${total.toLocaleString('id-ID')}`;
     '_blank'
   );
 }
+
 
 
