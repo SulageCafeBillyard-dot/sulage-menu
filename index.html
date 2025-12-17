@@ -130,6 +130,41 @@ button{
     aspect-ratio: 4 / 3;
   }
 }
+/* animasi item pesanan */
+.menu-row{
+  animation: slideIn .25s ease;
+}
+
+@keyframes slideIn{
+  from{
+    opacity:0;
+    transform:translateY(8px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* animasi keluar */
+.menu-row.removing{
+  animation: slideOut .2s ease forwards;
+}
+
+@keyframes slideOut{
+  to{
+    opacity:0;
+    transform:translateY(-8px);
+  }
+}
+.total span{
+  display:inline-block;
+  transition:transform .2s ease;
+}
+
+.total span.bump{
+  transform:scale(1.15);
+}
 
 </style>
 </head>
@@ -351,6 +386,7 @@ function kirimWA(){
 </script>
 </body>
 </html>
+
 
 
 
