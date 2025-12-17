@@ -280,15 +280,24 @@ let cart={};
 
 checks.forEach(ch=>{
   ch.addEventListener('change',()=>{
-    const name=ch.dataset.name;
-    const price=+ch.dataset.price;
-   if(ch.checked){
-  cart[name]={price,qty:1,temp:'Ice',type:ch.dataset.type||'drink'};
-}
+    const name = ch.dataset.name;
+    const price = +ch.dataset.price;
+
+    if(ch.checked){
+      cart[name] = {
+        price,
+        qty: 1,
+        temp: 'Ice',
+        type: ch.dataset.type || 'drink'
+      };
+    } else {
+      delete cart[name];   // 🔥 INI YANG KURANG
+    }
 
     render();
   });
 });
+
 
 function render(){
   orders.innerHTML='';
@@ -342,6 +351,7 @@ function kirimWA(){
 </script>
 </body>
 </html>
+
 
 
 
