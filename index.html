@@ -99,19 +99,19 @@ button{
 }
 .hero{
   width:100%;
-  height:55vh;
+  height:60vh;
   min-height:320px;
-  background-image: url('logo-sulage.png');
 
-  background-size: 90%;          /* 🔥 KUNCI: lebih kecil dari cover */
-  background-repeat: no-repeat;
-  background-position: center top;
+  background-image:url('logo-sulage.png');
+  background-repeat:no-repeat;
+  background-position:center top;
+  background-size:110%;   /* 🔥 gambar diperbesar */
 
-  background-color:#0E3B2E;      /* warna aman di pinggir */
-  border-radius:0 0 26px 26px;
-  box-shadow:0 12px 32px rgba(0,0,0,.35);
+  background-color:transparent; /* ❌ hapus background */
+  
   position:relative;
 }
+
 
 
 /* KHUSUS HP */
@@ -146,6 +146,12 @@ button{
   .hero{
     height:65vh;
     background-size: 88%;        /* sedikit lebih jauh di HP */
+  }
+}
+@media (max-width:600px){
+  .hero{
+    height:70vh;
+    background-size:120%; /* 🔥 lebih besar di HP */
   }
 }
 
@@ -356,6 +362,7 @@ function kirimWA(){
 </script>
 </body>
 </html>
+
 
 
 
