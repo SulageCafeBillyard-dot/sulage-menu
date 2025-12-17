@@ -204,6 +204,9 @@ function render(){
 }
 
 function kirimWA(){
+  const paymentEl = document.querySelector('input[name="payment"]:checked');
+  const payment = paymentEl ? paymentEl.value : '-';
+
   if(Object.keys(cart).length === 0){
     alert('Pilih menu dulu');
     return;
@@ -219,6 +222,7 @@ function kirimWA(){
     pesan += `- ${k} (${c.temp}) x${c.qty} = Rp${sub.toLocaleString('id-ID')}\n`;
   });
 
+  pesan += `\nMetode Pembayaran: ${payment}`;
   pesan += `\nTotal: Rp${total.toLocaleString('id-ID')}`;
 
   window.open(
@@ -226,7 +230,9 @@ function kirimWA(){
     '_blank'
   );
 }
+
 </script>
+
 
 
 
