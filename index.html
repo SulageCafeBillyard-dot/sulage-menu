@@ -99,15 +99,18 @@ button{
 }
 .hero{
   width:100%;
-  height:55vh;                 /* LEBIH TINGGI = GAMBAR TERASA LEBIH LUAS */
+  height:55vh;
   min-height:320px;
   background-image: url('logo-sulage.png');
-  background-size: cover;
-  background-position: center top; /* NAIKKAN FOKUS GAMBAR */
+  background-size: contain;     /* INI KUNCINYA */
+  background-position: center;
   background-repeat: no-repeat;
+  background-color:#0E3B2E;     /* WARNA LATAR */
   border-radius:0 0 26px 26px;
   box-shadow:0 12px 32px rgba(0,0,0,.35);
+  position:relative;
 }
+
 
 /* KHUSUS HP */
 @media (max-width:600px){
@@ -357,6 +360,7 @@ function kirimWA(){
 </script>
 </body>
 </html>
+
 
 
 
