@@ -218,15 +218,53 @@ function render(){
   totalEl.innerText = 'Rp' + total.toLocaleString('id-ID');
 }
 
+<script>
 function kirimWA(){
-  const nama=document.getElementById('nama').value;
-  const meja=document.getElementById('meja').value || '-';
-  if(!nama||Object.keys(cart).length===0){alert('Lengkapi pesanan');return;}
-  let text=''; let total=0;
-  Object.keys(cart).forEach(k=>{const c=cart[k]; const sub=c.price*c.qty; total+=sub; text+=`- ${k} (${c.temp}) x${c.qty} = Rp${sub.toLocaleString('id-ID')}\n`;});
-  const pesan=`☕ PESANAN SULAGE CAFFE & BILLYARD\nNama: ${nama}\nMeja: ${meja}\n\nPesanan:\n${text}\nTotal: Rp${total.toLocaleString('id-ID')}`;
-  window.open('https://wa.me/6282136930569?text='+encodeURIComponent(pesan),'_blank');
+  const nama = document.getElementById('nama').value;
+  const meja = document.getElementById('meja').value || '-';
+
+  // 🔥 AMBIL METODE PEMBAYARAN
+  const paymentEl = document.querySelector('input[name="payment"]:checked');
+  const payment = paymentEl ? paymentEl.value : '-';
+
+  if(!nama || Object.keys(cart).length === 0){
+    alert('Lengkapi pesanan');
+    return;
+  }
+
+  let text = '';
+  let total = 0;
+
+  Object.keys(cart).forEach(k=>{
+    const c = cart[k];
+    const sub = c.price * c.qty;
+    total += sub;
+
+    text += `- ${k}`;
+    if(c.type === 'drink'){
+      text += ` (${c.temp})`;
+    }
+    text += ` x${c.qty} = Rp${sub.toLocaleString('id-ID')}\n`;
+  });
+
+  const pesan =
+`☕ PESANAN SULAGE CAFE & BILLYARD
+Nama : ${nama}
+Meja : ${meja}
+
+Pesanan:
+${text}
+Total : Rp${total.toLocaleString('id-ID')}
+
+💳 Pembayaran : ${payment}`;
+
+  window.open(
+    'https://wa.me/6282136930569?text=' + encodeURIComponent(pesan),
+    '_blank'
+  );
 }
 </script>
+
 </body>
 </html>
+
