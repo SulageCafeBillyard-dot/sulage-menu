@@ -103,7 +103,6 @@ function render(){
 const p=new URLSearchParams(location.search);
 const meja=p.get('meja'); if(meja)document.getElementById('meja').value=meja;
 
-<script>
 function kirimWA(){
   const nama = document.getElementById('nama').value;
   if(!nama || Object.keys(cart).length === 0){
@@ -140,6 +139,3 @@ Total: Rp${total.toLocaleString('id-ID')}
   window.open(url, '_blank');
 }
 </script>
-</body>
-</html>
-
