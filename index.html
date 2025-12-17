@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sulage Cafe & Billyard</title>
+<title>Sulage Caffe & Billyard</title>
 <style>
 :root{--bg:#F3ECDC;--card:#E6D5BE;--text:#4B3621;--accent:#8B5E3C}
 *{box-sizing:border-box;font-family:Poppins,Arial,sans-serif}
@@ -24,8 +24,8 @@ button{width:100%;padding:14px;border:none;border-radius:16px;background:linear-
 <body>
 <div class="container">
 <header>
-<h1>OUR MENU</h1>
-<h2>SULAGE CAFE & BILLYARD</h2>
+<h1 class="title-main">OUR MENU</h1>
+<h2 class="title-sub">SULAGE CAFE &amp; BILLYARD</h2>
 <p>☕ Order Langsung dari Meja</p>
 </header>
 
@@ -34,127 +34,197 @@ button{width:100%;padding:14px;border:none;border-radius:16px;background:linear-
 <input id="meja" placeholder="No Meja" style="width:100%">
 </div>
 
+<!-- COFFEE -->
 <div class="card"><h3>☕ Coffee</h3>
 <div class="menu-item"><input type="checkbox" data-type="drink" data-name="Aren Coffee" data-price="28000"><label>Aren Coffee <span class="price">28k</span></label></div>
 <div class="menu-item"><input type="checkbox" data-type="drink" data-name="Hazelnut Coffee" data-price="28000"><label>Hazelnut Coffee <span class="price">28k</span></label></div>
 <div class="menu-item"><input type="checkbox" data-type="drink" data-name="Pandan Coffee" data-price="28000"><label>Pandan Coffee <span class="price">28k</span></label></div>
 <div class="menu-item"><input type="checkbox" data-type="drink" data-name="Mocha Latte" data-price="28000"><label>Mocha Latte <span class="price">28k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="drink" data-name="Caffe Latte" data-price="28000"><label>Caffe Latte <span class="price">28k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="drink" data-name="Vanilla Latte" data-price="28000"><label>Vanilla Latte <span class="price">28k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="drink" data-name="Americano" data-price="28000"><label>Americano <span class="price">28k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="drink" data-name="Espresso" data-price="28000"><label>Espresso <span class="price">28k</span></label></div>
 </div>
 
+<!-- NON COFFEE -->
 <div class="card"><h3>🥛 Non Coffee</h3>
 <div class="menu-item"><input type="checkbox" data-type="drink" data-name="Red Velvet" data-price="25000"><label>Red Velvet <span class="price">25k</span></label></div>
 <div class="menu-item"><input type="checkbox" data-type="drink" data-name="Green Tea" data-price="25000"><label>Green Tea <span class="price">25k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="drink" data-name="Chocolate" data-price="25000"><label>Chocolate <span class="price">25k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="drink" data-name="Vanilla" data-price="25000"><label>Vanilla <span class="price">25k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="drink" data-name="Lemon Tea" data-price="25000"><label>Lemon Tea <span class="price">25k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="drink" data-name="Ice Tea" data-price="25000"><label>Ice Tea <span class="price">25k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="drink" data-name="Avocado" data-price="25000"><label>Avocado <span class="price">25k</span></label></div>
 </div>
 
+<!-- MANUAL BREW & MOCKTAIL -->
+<div class="card"><h3>🫖 Manual Brew & Mocktail</h3>
+<div class="menu-item"><input type="checkbox" data-type="drink" data-name="V60" data-price="35000"><label>V60 <span class="price">35k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="drink" data-name="Japanese Ice Coffee" data-price="35000"><label>Japanese Ice Coffee <span class="price">35k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="drink" data-name="Vietnam Drip" data-price="35000"><label>Vietnam Drip <span class="price">35k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="drink" data-name="Blue Lagoon" data-price="35000"><label>Blue Lagoon <span class="price">35k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="drink" data-name="Sunrise" data-price="35000"><label>Sunrise <span class="price">35k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="drink" data-name="Grand Apple Mojito" data-price="35000"><label>Grand Apple Mojito <span class="price">35k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="drink" data-name="Cinderella Mocktail" data-price="35000"><label>Cinderella Mocktail <span class="price">35k</span></label></div>
+</div>
+
+<!-- SNACK -->
 <div class="card"><h3>🍪 Snack</h3>
 <div class="menu-item"><input type="checkbox" data-type="food" data-name="Kentang Goreng" data-price="25000"><label>Kentang Goreng <span class="price">25k</span></label></div>
-<div class="menu-item"><input type="checkbox" data-type="food" data-name="Tambah Nasi" data-price="5000"><label>Tambah Nasi <span class="price">5k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="food" data-name="Sosis Goreng / Bakar" data-price="25000"><label>Sosis Goreng / Bakar <span class="price">25k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="food" data-name="Nugget Goreng" data-price="25000"><label>Nugget Goreng <span class="price">25k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="food" data-name="Roti Bakar" data-price="25000"><label>Roti Bakar <span class="price">25k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="food" data-name="Pisang Coklat" data-price="20000"><label>Pisang Coklat <span class="price">20k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="food" data-name="Pisang Coklat Keju" data-price="25000"><label>Pisang Coklat Keju <span class="price">25k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="food" data-name="Mendoan" data-price="20000"><label>Mendoan <span class="price">20k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="food" data-name="Singkong Goreng" data-price="20000"><label>Singkong Goreng <span class="price">20k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="food" data-name="Lontar" data-price="15000"><label>Lontar <span class="price">15k</span></label></div>
+</div>
+
+<!-- MAIN COURSE -->
+<div class="card"><h3>🍽 Main Course</h3>
+<h4>🍗 Ayam & Bebek</h4>
+<div class="menu-item"><input type="checkbox" data-type="food" data-name="Ayam Lalapan" data-price="40000"><label>Ayam Lalapan <span class="price">40k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="food" data-name="Ayam Bakar" data-price="40000"><label>Ayam Bakar <span class="price">40k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="food" data-name="Bebek Lalapan" data-price="45000"><label>Bebek Lalapan <span class="price">45k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="food" data-name="Bebek Bakar" data-price="45000"><label>Bebek Bakar <span class="price">45k</span></label></div>
+
+<h4>🐟 Ikan</h4>
+<div class="menu-item"><input type="checkbox" data-type="food" data-name="Ikan Mujair Goreng" data-price="45000"><label>Ikan Mujair Goreng <span class="price">45k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="food" data-name="Ikan Mujair Bakar" data-price="45000"><label>Ikan Mujair Bakar <span class="price">45k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="food" data-name="Ikan Laut Goreng" data-price="45000"><label>Ikan Laut Goreng <span class="price">45k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="food" data-name="Ikan Laut Bakar" data-price="45000"><label>Ikan Laut Bakar <span class="price">45k</span></label></div>
+
+<h4>🍲 Sup</h4>
+<div class="menu-item"><input type="checkbox" data-type="food" data-name="Sup Ayam" data-price="40000"><label>Sup Ayam <span class="price">40k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="food" data-name="Sup Ikan" data-price="50000"><label>Sup Ikan <span class="price">50k</span></label></div>
+
+<h4>🥬 Sayur</h4>
+<div class="menu-item"><input type="checkbox" data-type="food" data-name="Cah Kangkung Goreng" data-price="15000"><label>Cah Kangkung Goreng <span class="price">15k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="food" data-name="Cah Kangkung Bunga Pepaya" data-price="17000"><label>Cah Kangkung Bunga Pepaya <span class="price">17k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="food" data-name="Cah Kangkung Seafood" data-price="20000"><label>Cah Kangkung Seafood <span class="price">20k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="food" data-name="Cah Touge" data-price="15000"><label>Cah Touge <span class="price">15k</span></label></div>
+
+<h4>🍜 Kwetiaw</h4>
+<div class="menu-item"><input type="checkbox" data-type="food" data-name="Kwetiaw Goreng Ayam" data-price="35000"><label>Kwetiaw Goreng Ayam <span class="price">35k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="food" data-name="Kwetiaw Goreng Seafood" data-price="45000"><label>Kwetiaw Goreng Seafood <span class="price">45k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="food" data-name="Kwetiaw Kuah Ayam" data-price="35000"><label>Kwetiaw Kuah Ayam <span class="price">35k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="food" data-name="Kwetiaw Kuah Seafood" data-price="45000"><label>Kwetiaw Kuah Seafood <span class="price">45k</span></label></div>
+
+<h4>🦐 Udang</h4>
+<div class="menu-item"><input type="checkbox" data-type="food" data-name="Udang Saus Asam Manis" data-price="45000"><label>Udang Saus Asam Manis <span class="price">45k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="food" data-name="Udang Saus Asam Pedas" data-price="45000"><label>Udang Saus Asam Pedas <span class="price">45k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="food" data-name="Udang Saus Tiram" data-price="45000"><label>Udang Saus Tiram <span class="price">45k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="food" data-name="Udang Goreng Mentega" data-price="45000"><label>Udang Goreng Mentega <span class="price">45k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="food" data-name="Udang Goreng Tepung" data-price="45000"><label>Udang Goreng Tepung <span class="price">45k</span></label></div>
+
+<h4>🦑 Cumi</h4>
+<div class="menu-item"><input type="checkbox" data-type="food" data-name="Cumi Saus Asam Manis" data-price="45000"><label>Cumi Saus Asam Manis <span class="price">45k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="food" data-name="Cumi Saus Asam Pedas" data-price="45000"><label>Cumi Saus Asam Pedas <span class="price">45k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="food" data-name="Cumi Saus Tiram" data-price="45000"><label>Cumi Saus Tiram <span class="price">45k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="food" data-name="Cumi Goreng Mentega" data-price="45000"><label>Cumi Goreng Mentega <span class="price">45k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="food" data-name="Cumi Goreng Tepung" data-price="45000"><label>Cumi Goreng Tepung <span class="price">45k</span></label></div>
+
+<h4>🍛 Nasi Goreng</h4>
+<div class="menu-item"><input type="checkbox" data-type="food" data-name="Nasi Goreng Ayam" data-price="25000"><label>Nasi Goreng Ayam <span class="price">25k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="food" data-name="Nasi Goreng Seafood" data-price="35000"><label>Nasi Goreng Seafood <span class="price">35k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="food" data-name="Nasi Goreng Kampung" data-price="20000"><label>Nasi Goreng Kampung <span class="price">20k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="food" data-name="Nasi Goreng Ikan Asin" data-price="20000"><label>Nasi Goreng Ikan Asin <span class="price">20k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="food" data-name="Nasi Goreng Spesial" data-price="45000"><label>Nasi Goreng Spesial <span class="price">45k</span></label></div>
+
+<h4>🍝 Mie</h4>
+<div class="menu-item"><input type="checkbox" data-type="food" data-name="Mie Goreng Ayam" data-price="25000"><label>Mie Goreng Ayam <span class="price">25k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="food" data-name="Mie Goreng Seafood" data-price="35000"><label>Mie Goreng Seafood <span class="price">35k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="food" data-name="Mie Kuah Ayam" data-price="25000"><label>Mie Kuah Ayam <span class="price">25k</span></label></div>
+<div class="menu-item"><input type="checkbox" data-type="food" data-name="Mie Kuah Seafood" data-price="35000"><label>Mie Kuah Seafood <span class="price">35k</span></label></div>
 </div>
 
 <div class="card">
 <h3>📝 Detail Pesanan</h3>
 <div id="orders"></div>
 
+
+<div class="menu-item">
+  <input type="checkbox"
+         data-type="food"
+         data-name="Tambah Nasi"
+         data-price="5000">
+  <label>Tambah Nasi <span class="price">5k</span></label>
+</div>
+
+
 <h4>💳 Metode Pembayaran</h4>
 <label><input type="radio" name="payment" value="Cash" checked> Cash</label><br>
 <label><input type="radio" name="payment" value="Transfer"> Transfer</label><br>
-<label><input type="radio" name="payment" value="QRIS"> QRIS</label>
+<label><input type="radio" name="payment" value="QRIS"> QR / QRIS</label>
 
+<textarea id="catatan" placeholder="Catatan (pedas, less sugar, dll)" style="width:100%;margin-top:8px"></textarea>
 <div class="total">Total: <span id="total">Rp0</span></div>
 <button onclick="kirimWA()">Konfirmasi ke Admin (WhatsApp)</button>
 </div>
 </div>
 
 <script>
-const checks = document.querySelectorAll('input[type=checkbox]');
-const orders = document.getElementById('orders');
-const totalEl = document.getElementById('total');
-let cart = {};
+const checks=document.querySelectorAll('input[type=checkbox]');
+const orders=document.getElementById('orders');
+const totalEl=document.getElementById('total');
+let cart={};
 
 checks.forEach(ch=>{
   ch.addEventListener('change',()=>{
-    const name = ch.dataset.name;
-    const price = parseInt(ch.dataset.price);
-
-    if(ch.checked){
-      cart[name] = {
-        price: price,
-        qty: 1,
-        temp: 'Hot',
-        type: ch.dataset.type === 'food' ? 'food' : 'drink'
-      };
-    } else {
-      delete cart[name];
-    }
+    const name=ch.dataset.name;
+    const price=+ch.dataset.price;
+    if(ch.checked){cart[name]={price,qty:1,temp:'Hot',type:ch.dataset.type||'drink'};} else delete cart[name];
     render();
   });
 });
 
 function render(){
   orders.innerHTML='';
-  let total=0;
+  let total = 0;
 
   Object.keys(cart).forEach(k=>{
     const c = cart[k];
     total += c.price * c.qty;
 
-    let row = `<div class="menu-row"><span>${k}</span>`;
-    if(c.type === 'drink'){
-      row += `<select data-menu="${k}" class="temp">
-        <option value="Hot" ${c.temp==='Hot'?'selected':''}>Hot</option>
-        <option value="Ice" ${c.temp==='Ice'?'selected':''}>Ice</option>
-      </select>`;
-    }
-    row += `<select data-menu="${k}" class="qty">`;
-    for(let i=1;i<=7;i++){
-      row += `<option value="${i}" ${c.qty===i?'selected':''}>${i}</option>`;
-    }
-    row += `</select><strong>Rp${(c.price*c.qty).toLocaleString('id-ID')}</strong></div>`;
-    orders.innerHTML += row;
+    orders.innerHTML += (()=>{
+      let row = `<div class="menu-row"><span>${k}</span>`;
+      if(c.type==='drink'){
+        row += `<select data-menu="${k}" class="temp">
+          <option value="Hot" ${c.temp==='Hot'?'selected':''}>Hot</option>
+          <option value="Ice" ${c.temp==='Ice'?'selected':''}>Ice</option>
+        </select>`;
+      }
+      row += `<select data-menu="${k}" class="qty">${[1,2,3,4,5,6,7].map(n=>`<option value="${n}" ${c.qty===n?'selected':''}>${n}</option>`).join('')}</select>
+      <strong>Rp${(c.price*c.qty).toLocaleString('id-ID')}</strong></div>`;
+      return row;
+    })();
   });
 
   document.querySelectorAll('.temp').forEach(sel=>{
     sel.onchange = e => {
       cart[e.target.dataset.menu].temp = e.target.value;
       render();
-    }
+    };
   });
 
   document.querySelectorAll('.qty').forEach(sel=>{
     sel.onchange = e => {
       cart[e.target.dataset.menu].qty = parseInt(e.target.value);
       render();
-    }
+    };
   });
 
   totalEl.innerText = 'Rp' + total.toLocaleString('id-ID');
 }
 
 function kirimWA(){
-  const nama = document.getElementById('nama').value.trim();
-  const meja = document.getElementById('meja').value.trim() || '-';
-  const payment = document.querySelector('input[name="payment"]:checked')?.value || '-';
-
-  if(!nama || Object.keys(cart).length===0){
-    alert('Lengkapi nama dan pesanan');
-    return;
-  }
-
-  let text='';
-  let total=0;
-
-  for(const k in cart){
-    const c = cart[k];
-    const sub = c.price * c.qty;
-    total += sub;
-
-    text += `- ${k}`;
-    if(c.type==='drink') text += ` (${c.temp})`;
-    text += ` x${c.qty} = Rp${sub.toLocaleString('id-ID')}\n`;
-  }
-
-  const pesan = `☕ PESANAN SULAGE CAFE & BILLYARD\nNama: ${nama}\nMeja: ${meja}\n\nPesanan:\n${text}\nTotal: Rp${total.toLocaleString('id-ID')}\n\nPembayaran: ${payment}`;
-
+  const nama=document.getElementById('nama').value;
+  const meja=document.getElementById('meja').value || '-';
+  if(!nama||Object.keys(cart).length===0){alert('Lengkapi pesanan');return;}
+  let text=''; let total=0;
+  Object.keys(cart).forEach(k=>{const c=cart[k]; const sub=c.price*c.qty; total+=sub; text+=`- ${k} (${c.temp}) x${c.qty} = Rp${sub.toLocaleString('id-ID')}\n`;});
+  const pesan=`☕ PESANAN SULAGE CAFFE & BILLYARD\nNama: ${nama}\nMeja: ${meja}\n\nPesanan:\n${text}\nTotal: Rp${total.toLocaleString('id-ID')}`;
   window.open('https://wa.me/6282136930569?text='+encodeURIComponent(pesan),'_blank');
 }
 </script>
