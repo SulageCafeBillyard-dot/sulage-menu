@@ -162,13 +162,24 @@ let cart={};
 
 checks.forEach(ch=>{
   ch.addEventListener('change',()=>{
-    const name=ch.dataset.name;
-    const price=+ch.dataset.price;
-    if(ch.checked){cart[name]={price,qty:1,temp:'Hot'};} else delete cart[name];
+    const name = ch.dataset.name;
+    const price = parseInt(ch.dataset.price);
+
+    if(ch.checked){
+      cart[name] = {
+        price: price,
+        qty: 1,          // PASTI ANGKA
+        temp: 'Hot'
+      };
+    } else {
+      delete cart[name];
+    }
+
     render();
   });
 });
 
+  
 function render(){
   orders.innerHTML='';
   let total=0;
@@ -234,4 +245,5 @@ Total: Rp${total.toLocaleString('id-ID')}`;
     '_blank'
   );
 }
+
 
