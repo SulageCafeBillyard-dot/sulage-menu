@@ -4,223 +4,113 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sulage Caffe & Billyard</title>
-
 <style>
-:root{
-  --bg:#F3ECDC;
-  --card:#E6D5BE;
-  --text:#4B3621;
-  --accent:#8B5E3C;
-}
-
+:root{--bg:#F3ECDC;--card:#E6D5BE;--text:#4B3621;--accent:#8B5E3C}
 *{box-sizing:border-box;font-family:Poppins,Arial,sans-serif}
-
 body{margin:0;background:var(--bg);color:var(--text)}
-
 .container{max-width:480px;margin:auto;padding:20px}
-
 header{text-align:center;margin-bottom:20px}
-header img{width:90px}
-header h1{margin:10px 0 0}
-
-.card{
-  background:var(--card);
-  border-radius:20px;
-  padding:16px;
-  margin-bottom:16px;
-  box-shadow:0 8px 20px rgba(0,0,0,.15);
-}
-
-.menu-item{
-  display:flex;
-  gap:12px;
-  margin-bottom:12px;
-}
-
-.menu-item img{
-  width:70px;
-  height:70px;
-  border-radius:14px;
-  object-fit:cover;
-}
-
-.menu-info{flex:1}
+.card{background:var(--card);border-radius:20px;padding:16px;margin-bottom:16px;box-shadow:0 8px 20px rgba(0,0,0,.15)}
+.menu-item{margin-bottom:10px}
+.menu-row{display:flex;justify-content:space-between;align-items:center;gap:6px}
 .price{color:var(--accent);font-weight:bold}
-
-input,textarea{
-  width:100%;
-  padding:10px;
-  border-radius:12px;
-  border:1px solid #cbb89e;
-  background:#fffaf3;
-  margin-top:8px;
-}
-
+select,input{padding:6px;border-radius:8px;border:1px solid #cbb89e}
 .total{text-align:right;font-size:18px;margin-top:10px}
-
-button{
-  width:100%;
-  padding:14px;
-  border:none;
-  border-radius:16px;
-  background:linear-gradient(135deg,#8B5E3C,#6f4428);
-  color:white;
-  font-size:18px;
-  font-weight:bold;
-}
+button{width:100%;padding:14px;border:none;border-radius:16px;background:linear-gradient(135deg,#8B5E3C,#6f4428);color:white;font-size:18px;font-weight:bold}
 </style>
 </head>
-
 <body>
 <div class="container">
-
 <header>
-  <img src="logo.png">
-  <h1>Sulage Caffe & Billyard</h1>
-  <p>☕ Order Langsung dari Meja</p>
+<h1>Sulage Caffe & Billyard</h1>
+<p>☕ Order Langsung dari Meja</p>
 </header>
-
 <div class="card">
-  <input id="nama" placeholder="Nama">
-  <input id="meja" placeholder="Meja" readonly>
+<input id="nama" placeholder="Nama" style="width:100%;margin-bottom:8px">
+<input id="meja" placeholder="Meja" readonly style="width:100%">
 </div>
 
 <!-- COFFEE -->
-<div class="card">
-<h3>☕ Coffee</h3>
-
-<div class="menu-item">
-<input type="checkbox" data-price="18000" value="Espresso">
-<img src="espresso.jpg">
-<div class="menu-info">
-<strong>Espresso</strong><br>
-<span class="price">Rp18.000</span>
-</div>
-</div>
-
-<div class="menu-item">
-<input type="checkbox" data-price="22000" value="Cappuccino">
-<img src="cappuccino.jpg">
-<div class="menu-info">
-<strong>Cappuccino</strong><br>
-<span class="price">Rp22.000</span>
-</div>
-</div>
-
-<div class="menu-item">
-<input type="checkbox" data-price="22000" value="Latte">
-<img src="latte.jpg">
-<div class="menu-info">
-<strong>Latte</strong><br>
-<span class="price">Rp22.000</span>
-</div>
-</div>
+<div class="card"><h3>☕ Coffee</h3>
+<div class="menu-item" data-name="Aren Coffee" data-price="28000">Aren Coffee <span class="price">28k</span></div>
+<div class="menu-item" data-name="Hazelnut Coffee" data-price="28000">Hazelnut Coffee <span class="price">28k</span></div>
+<div class="menu-item" data-name="Pandan Coffee" data-price="28000">Pandan Coffee <span class="price">28k</span></div>
+<div class="menu-item" data-name="Mocha Latte" data-price="28000">Mocha Latte <span class="price">28k</span></div>
+<div class="menu-item" data-name="Caffe Latte" data-price="28000">Caffe Latte <span class="price">28k</span></div>
+<div class="menu-item" data-name="Vanilla Latte" data-price="28000">Vanilla Latte <span class="price">28k</span></div>
+<div class="menu-item" data-name="Americano" data-price="28000">Americano <span class="price">28k</span></div>
+<div class="menu-item" data-name="Espresso" data-price="28000">Espresso <span class="price">28k</span></div>
 </div>
 
 <!-- NON COFFEE -->
-<div class="card">
-<h3>🥛 Non-Coffee</h3>
-
-<div class="menu-item">
-<input type="checkbox" data-price="15000" value="Chocolate">
-<img src="chocolate.jpg">
-<div class="menu-info">
-<strong>Chocolate</strong><br>
-<span class="price">Rp15.000</span>
-</div>
-</div>
-
-<div class="menu-item">
-<input type="checkbox" data-price="15000" value="Matcha">
-<img src="matcha.jpg">
-<div class="menu-info">
-<strong>Matcha</strong><br>
-<span class="price">Rp15.000</span>
-</div>
-</div>
+<div class="card"><h3>🥛 Non-Coffee</h3>
+<div class="menu-item" data-name="Chocolate" data-price="20000">Chocolate <span class="price">20k</span></div>
+<div class="menu-item" data-name="Matcha" data-price="20000">Matcha <span class="price">20k</span></div>
 </div>
 
 <!-- MANUAL BREW -->
-<div class="card">
-<h3>🫖 Manual Brew</h3>
-
-<div class="menu-item">
-<input type="checkbox" data-price="25000" value="V60">
-<img src="v60.jpg">
-<div class="menu-info">
-<strong>V60</strong><br>
-<span class="price">Rp25.000</span>
-</div>
-</div>
-
-<div class="menu-item">
-<input type="checkbox" data-price="25000" value="Japanese">
-<img src="japanese.jpg">
-<div class="menu-info">
-<strong>Japanese</strong><br>
-<span class="price">Rp25.000</span>
-</div>
-</div>
+<div class="card"><h3>🫖 Manual Brew</h3>
+<div class="menu-item" data-name="V60" data-price="25000">V60 <span class="price">25k</span></div>
+<div class="menu-item" data-name="Japanese" data-price="25000">Japanese <span class="price">25k</span></div>
 </div>
 
 <!-- SNACK -->
-<div class="card">
-<h3>🍪 Snack</h3>
-
-<div class="menu-item">
-<input type="checkbox" data-price="12000" value="Kentang Goreng">
-<img src="kentang.jpg">
-<div class="menu-info">
-<strong>Kentang Goreng</strong><br>
-<span class="price">Rp12.000</span>
-</div>
-</div>
-
-<div class="menu-item">
-<input type="checkbox" data-price="10000" value="Roti Bakar">
-<img src="rotibakar.jpg">
-<div class="menu-info">
-<strong>Roti Bakar</strong><br>
-<span class="price">Rp10.000</span>
-</div>
-</div>
+<div class="card"><h3>🍪 Snack</h3>
+<div class="menu-item" data-name="Kentang Goreng" data-price="12000">Kentang Goreng <span class="price">12k</span></div>
+<div class="menu-item" data-name="Roti Bakar" data-price="10000">Roti Bakar <span class="price">10k</span></div>
 </div>
 
 <div class="card">
-<textarea id="catatan" placeholder="Catatan (less sugar, hot/ice, dll)"></textarea>
+<h3>📝 Pesanan</h3>
+<div id="orders"></div>
+<textarea id="catatan" placeholder="Catatan (less sugar, hot/ice, dll)" style="width:100%;margin-top:8px"></textarea>
 <div class="total">Total: <span id="total">Rp0</span></div>
 <button onclick="kirimWA()">Pesan via WhatsApp</button>
 </div>
-
 </div>
 
 <script>
-const cbs=document.querySelectorAll('input[type=checkbox]');
-const totalEl=document.getElementById("total");
+const menuItems=document.querySelectorAll('.menu-item');
+const orders=document.getElementById('orders');
+const totalEl=document.getElementById('total');
+let cart=[];
 
-cbs.forEach(c=>c.addEventListener("change",()=>{
-  let t=0;cbs.forEach(x=>x.checked&&(t+=+x.dataset.price));
-  totalEl.innerText="Rp"+t.toLocaleString("id-ID");
-}));
+menuItems.forEach(item=>{
+  item.addEventListener('click',()=>{
+    const name=item.dataset.name;
+    const price=+item.dataset.price;
+    cart.push({name,price,qty:1,temp:'Hot'});
+    render();
+  });
+});
+
+function render(){
+  orders.innerHTML=''; let total=0;
+  cart.forEach((c,i)=>{
+    total+=c.price*c.qty;
+    orders.innerHTML+=`
+    <div class="menu-row">
+      ${c.name}
+      <select onchange="cart[${i}].temp=this.value;render()"><option>Hot</option><option>Ice</option></select>
+      <select onchange="cart[${i}].qty=this.value;render()"><option>1</option><option>2</option><option>3</option></select>
+      Rp${(c.price*c.qty).toLocaleString('id-ID')}
+    </div>`;
+  });
+  totalEl.innerText='Rp'+total.toLocaleString('id-ID');
+}
 
 const p=new URLSearchParams(location.search);
-const meja=p.get("meja");
-if(meja)document.getElementById("meja").value=meja;
+const meja=p.get('meja'); if(meja)document.getElementById('meja').value=meja;
 
 function kirimWA(){
-  const nama=document.getElementById("nama").value;
-  const cat=document.getElementById("catatan").value;
-  let list="";
-  cbs.forEach(x=>x.checked&&(list+="- "+x.value+"%0A"));
-  if(!nama||!list){alert("Lengkapi data");return;}
-
-  const admin="6282136930569";
+  const nama=document.getElementById('nama').value;
+  if(!nama||cart.length===0){alert('Lengkapi pesanan');return;}
+  let text=''; let total=0;
+  cart.forEach(c=>{total+=c.price*c.qty;text+=`- ${c.name} (${c.temp}) x${c.qty} = Rp${(c.price*c.qty).toLocaleString('id-ID')}%0A`;});
+  const admin='6282136930569';
   const msg=`☕ PESANAN SULAGE CAFFE & BILLYARD%0A
-Nama: ${nama}%0A
-Meja: ${meja}%0A%0A
-Pesanan:%0A${list}%0ACatatan: ${cat}`;
-
-  window.open("https://wa.me/"+admin+"?text="+msg,"_blank");
+Nama: ${nama}%0AMeja: ${meja||'-'}%0A%0APesanan:%0A${text}%0ATotal: Rp${total.toLocaleString('id-ID')}`;
+  window.open('https://wa.me/'+admin+'?text='+msg,'_blank');
 }
 </script>
 </body>
