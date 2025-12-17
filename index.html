@@ -155,12 +155,11 @@ button{width:100%;padding:14px;border:none;border-radius:16px;background:linear-
 </div>
 
 <script>
-const checks=document.querySelectorAll('input[type=checkbox]');
-const orders=document.getElementById('orders');
-const totalEl=document.getElementById('total');
-let cart={};
+const checks = document.querySelectorAll('input[type=checkbox]');
 const orders = document.getElementById('orders');
 const totalEl = document.getElementById('total');
+
+let cart = {};
 
 checks.forEach(ch=>{
   ch.addEventListener('change',()=>{
@@ -168,29 +167,24 @@ checks.forEach(ch=>{
     const price = parseInt(ch.dataset.price);
 
     if(ch.checked){
-      cart[name] = {
-        price: price,
-        qty: 1,          // PASTI ANGKA
-        temp: 'Hot'
-      };
+      cart[name] = { price: price, qty: 1, temp: 'Hot' };
     } else {
       delete cart[name];
     }
-
     render();
   });
 });
 
-  
 function render(){
-  orders.innerHTML='';
-  let total=0;
+  orders.innerHTML = '';
+  let total = 0;
 
   Object.keys(cart).forEach(k=>{
-    const c=cart[k];
-    total+=c.price*c.qty;
+    const c = cart[k];
+    const sub = c.price * c.qty;
+    total += sub;
 
-    orders.innerHTML+=`
+    orders.innerHTML += `
       <div class="menu-row">
         ${k}
         <select onchange="cart['${k}'].temp=this.value;render()">
@@ -201,52 +195,39 @@ function render(){
           <option>1</option><option>2</option><option>3</option>
           <option>4</option><option>5</option><option>6</option><option>7</option>
         </select>
-        Rp${(c.price*c.qty).toLocaleString('id-ID')}
-      </div>`;
+        Rp${sub.toLocaleString('id-ID')}
+      </div>
+    `;
   });
 
-  totalEl.innerText='Rp'+total.toLocaleString('id-ID');
+  totalEl.innerText = 'Rp' + total.toLocaleString('id-ID');
 }
 
-
 function kirimWA(){
-  const nama = document.getElementById('nama').value;
-  const meja = document.getElementById('meja').value || '-';
-  const catatan = document.getElementById('catatan').value;
-  const payment = document.querySelector('input[name=payment]:checked').value;
-
-  if(!nama || Object.keys(cart).length === 0){
-    alert('Lengkapi pesanan');
+  if(Object.keys(cart).length === 0){
+    alert('Pilih menu dulu');
     return;
   }
 
-  let text = '';
+  let pesan = '☕ PESANAN SULAGE CAFE & BILLYARD\n\n';
   let total = 0;
 
   Object.keys(cart).forEach(k=>{
     const c = cart[k];
     const sub = c.price * c.qty;
     total += sub;
-    text += `- ${k} (${c.temp}) x${c.qty} = Rp${sub.toLocaleString('id-ID')}\n`;
+    pesan += `- ${k} (${c.temp}) x${c.qty} = Rp${sub.toLocaleString('id-ID')}\n`;
   });
 
-  const pesan =
-`☕ PESANAN SULAGE CAFE & BILLYARD
-Nama: ${nama}
-Meja: ${meja}
-
-Pesanan:
-${text}
-Metode Bayar: ${payment}
-Catatan: ${catatan || '-'}
-
-Total: Rp${total.toLocaleString('id-ID')}`;
+  pesan += `\nTotal: Rp${total.toLocaleString('id-ID')}`;
 
   window.open(
     'https://wa.me/6282136930569?text=' + encodeURIComponent(pesan),
     '_blank'
   );
 }
+</script>
+
 
 
 
