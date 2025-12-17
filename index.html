@@ -172,12 +172,24 @@ let cart={};
 
 checks.forEach(ch=>{
   ch.addEventListener('change',()=>{
-    const name=ch.dataset.name;
-    const price=+ch.dataset.price;
-    if(ch.checked){cart[name]={price,qty:1,temp:'Hot',type:ch.dataset.type||'drink'};} else delete cart[name];
+    const name = ch.dataset.name;
+    const price = parseInt(ch.dataset.price);
+
+    if(ch.checked){
+      cart[name] = {
+        price: price,
+        qty: 1,
+        temp: 'Hot',
+        type: ch.dataset.type === 'food' ? 'food' : 'drink'
+      };
+    } else {
+      delete cart[name];
+    }
+
     render();
   });
 });
+
 
 function render(){
   orders.innerHTML='';
@@ -220,22 +232,24 @@ function render(){
 
 <script>
 function kirimWA(){
-  const nama = document.getElementById('nama').value;
-  const meja = document.getElementById('meja').value || '-';
+  const nama = document.getElementById('nama').value.trim();
+  const meja = document.getElementById('meja').value.trim() || '-';
+  const payment = document.querySelector('input[name="payment"]:checked')?.value || '-';
 
-  // 🔥 AMBIL METODE PEMBAYARAN
-  const paymentEl = document.querySelector('input[name="payment"]:checked');
-  const payment = paymentEl ? paymentEl.value : '-';
+  if(!nama){
+    alert('Nama harus diisi');
+    return;
+  }
 
-  if(!nama || Object.keys(cart).length === 0){
-    alert('Lengkapi pesanan');
+  if(Object.keys(cart).length === 0){
+    alert('Belum ada menu dipilih');
     return;
   }
 
   let text = '';
   let total = 0;
 
-  Object.keys(cart).forEach(k=>{
+  for(const k in cart){
     const c = cart[k];
     const sub = c.price * c.qty;
     total += sub;
@@ -245,7 +259,7 @@ function kirimWA(){
       text += ` (${c.temp})`;
     }
     text += ` x${c.qty} = Rp${sub.toLocaleString('id-ID')}\n`;
-  });
+  }
 
   const pesan =
 `☕ PESANAN SULAGE CAFE & BILLYARD
@@ -254,6 +268,7 @@ Meja : ${meja}
 
 Pesanan:
 ${text}
+----------------------
 Total : Rp${total.toLocaleString('id-ID')}
 
 💳 Pembayaran : ${payment}`;
@@ -263,8 +278,10 @@ Total : Rp${total.toLocaleString('id-ID')}
     '_blank'
   );
 }
+
 </script>
 </body>
 </html>
+
 
 
