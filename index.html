@@ -5,12 +5,46 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sulage Caffe & Billyard</title>
 <style>
-:root{--bg:#F3ECDC;--card:#E6D5BE;--text:#4B3621;--accent:#8B5E3C}
+:root{
+  --bg:#0E3B2E;        /* hijau meja billiard */
+  --card:#164D3A;      /* hijau gelap */
+  --text:#F5F5F5;      /* putih lembut */
+  --accent:#F2C94C;    /* emas / bola billiard */
+}
+
 *{box-sizing:border-box;font-family:Poppins,Arial,sans-serif}
 body{margin:0;background:var(--bg);color:var(--text)}
 .container{max-width:520px;margin:auto;padding:20px}
-header{text-align:center;margin-bottom:20px}
-.card{background:var(--card);border-radius:18px;padding:14px;margin-bottom:14px;box-shadow:0 6px 16px rgba(0,0,0,.15)}
+header{
+  text-align:center;
+  margin-bottom:20px;
+}
+
+.title-main{
+  font-size:26px;
+  letter-spacing:2px;
+  margin:6px 0;
+}
+
+.title-sub{
+  font-size:16px;
+  font-weight:500;
+  opacity:.85;
+}
+
+p{
+  font-size:14px;
+  opacity:.9;
+}
+
+.card{
+  background:linear-gradient(180deg,#1B5E45,#164D3A);
+  border-radius:18px;
+  padding:14px;
+  margin-bottom:14px;
+  box-shadow:0 10px 24px rgba(0,0,0,.35);
+}
+
 h3,h4{margin:8px 0}
 .menu-item{display:flex;align-items:center;gap:8px;margin-bottom:6px}
 .menu-item label{flex:1;display:flex;justify-content:space-between;cursor:pointer}
@@ -18,7 +52,17 @@ h3,h4{margin:8px 0}
 .menu-row{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-bottom:6px;font-size:14px}
 select,input[type=checkbox]{padding:4px}
 .total{text-align:right;font-size:18px;margin-top:10px}
-button{width:100%;padding:14px;border:none;border-radius:16px;background:linear-gradient(135deg,#8B5E3C,#6f4428);color:white;font-size:18px;font-weight:bold}
+button{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:16px;
+  background:linear-gradient(135deg,#F2C94C,#C9A227);
+  color:#1E1E1E;
+  font-size:18px;
+  font-weight:bold;
+}
+
 .logo-wrap{
   display:flex;
   justify-content:center;
@@ -37,16 +81,13 @@ button{width:100%;padding:14px;border:none;border-radius:16px;background:linear-
 <div class="container">
 <header>
   <div class="logo-wrap">
-    <img src="Capture_upscayl_5x_digital-art-4x.png" 
-         alt="Sulage Cafe & Billiard Logo" 
-         class="logo">
+    <img src="logo-sulage.png" alt="Sulage Cafe & Billiard" class="logo">
   </div>
 
   <h1 class="title-main">OUR MENU</h1>
-  <h2 class="title-sub">SULAGE CAFE &amp; BILLYARD</h2>
+  <h2 class="title-sub">SULAGE CAFE &amp; BILLIARD</h2>
   <p>☕ Order Langsung dari Meja</p>
 </header>
-
 <div class="card">
 <input id="nama" placeholder="Nama" style="width:100%;margin-bottom:8px">
 <input id="meja" placeholder="No Meja" style="width:100%">
@@ -248,4 +289,5 @@ function kirimWA(){
 </script>
 </body>
 </html>
+
 
