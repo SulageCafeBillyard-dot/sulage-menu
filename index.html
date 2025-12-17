@@ -388,15 +388,25 @@ setTimeout(()=>totalEl.classList.remove('bump'),200);
 function kirimWA(){
   const nama=document.getElementById('nama').value;
   const meja=document.getElementById('meja').value || '-';
+  const payment = document.querySelector('input[name="payment"]:checked')?.value || '-';
   if(!nama||Object.keys(cart).length===0){alert('Lengkapi pesanan');return;}
   let text=''; let total=0;
   Object.keys(cart).forEach(k=>{const c=cart[k]; const sub=c.price*c.qty; total+=sub; text+=`- ${k} (${c.temp}) x${c.qty} = Rp${sub.toLocaleString('id-ID')}\n`;});
-  const pesan=`☕ PESANAN SULAGE CAFFE & BILLYARD\nNama: ${nama}\nMeja: ${meja}\n\nPesanan:\n${text}\nTotal: Rp${total.toLocaleString('id-ID')}`;
+  const pesan=`☕ PESANAN SULAGE CAFFE & BILLYARD
+Nama: ${nama}
+Meja: ${meja}
+Pembayaran: ${payment}
+
+Pesanan:
+${text}
+Total: Rp${total.toLocaleString('id-ID')}`;
+
   window.open('https://wa.me/6282136930569?text='+encodeURIComponent(pesan),'_blank');
 }
 </script>
 </body>
 </html>
+
 
 
 
