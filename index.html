@@ -75,18 +75,35 @@ button{
   border-radius:16px;
   box-shadow:0 6px 18px rgba(0,0,0,.25);
 }
+.header-logo{
+  width:100%;
+  margin-bottom:16px;
+}
+
+.logo-full{
+  width:100%;
+  height:auto;
+  display:block;
+  border-radius:18px;
+  box-shadow:0 8px 22px rgba(0,0,0,.35);
+}
+
+/* KHUSUS HP */
+@media (max-width: 600px){
+  .logo-full{
+    width:100vw;
+    max-width:100%;
+    margin-left:calc(-50vw + 50%);
+    border-radius:0;
+  }
+}
+
 </style>
 </head>
 <body>
 <div class="container">
-<header>
-  <div class="logo-wrap">
-    <img src="logo-sulage.png" alt="Sulage Cafe & Billiard" class="logo">
-  </div>
-
-  <h1 class="title-main">OUR MENU</h1>
-  <h2 class="title-sub">SULAGE CAFE &amp; BILLIARD</h2>
-  <p>☕ Order Langsung dari Meja</p>
+<header class="header-logo">
+  <img src="logo-sulage.png" alt="Sulage Cafe & Billiard" class="logo-full">
 </header>
 <div class="card">
 <input id="nama" placeholder="Nama" style="width:100%;margin-bottom:8px">
@@ -289,5 +306,6 @@ function kirimWA(){
 </script>
 </body>
 </html>
+
 
 
