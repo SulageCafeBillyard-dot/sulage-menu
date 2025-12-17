@@ -144,10 +144,14 @@ button{width:100%;padding:14px;border:none;border-radius:16px;background:linear-
 <div id="orders"></div>
 
 
-<select id="nasi" style="width:100%;margin-bottom:10px">
-  <option value="Nasi Putih">Nasi Putih</option>
-  <option value="Tambah Nasi (+5k)">Tambah Nasi (+5k)</option>
-</select>
+<div class="menu-item">
+  <input type="checkbox"
+         data-type="food"
+         data-name="Tambah Nasi"
+         data-price="5000">
+  <label>Tambah Nasi <span class="price">5k</span></label>
+</div>
+
 
 <h4>💳 Metode Pembayaran</h4>
 <label><input type="radio" name="payment" value="Cash" checked> Cash</label><br>
