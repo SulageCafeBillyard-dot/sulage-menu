@@ -282,7 +282,10 @@ checks.forEach(ch=>{
   ch.addEventListener('change',()=>{
     const name=ch.dataset.name;
     const price=+ch.dataset.price;
-    if(ch.checked){cart[name]={price,qty:1,temp:'Hot',type:ch.dataset.type||'drink'};} else delete cart[name];
+   if(ch.checked){
+  cart[name]={price,qty:1,temp:'Ice',type:ch.dataset.type||'drink'};
+}
+
     render();
   });
 });
@@ -299,9 +302,10 @@ function render(){
       let row = `<div class="menu-row"><span>${k}</span>`;
       if(c.type==='drink'){
         row += `<select data-menu="${k}" class="temp">
-          <option value="Hot" ${c.temp==='Hot'?'selected':''}>Hot</option>
-          <option value="Ice" ${c.temp==='Ice'?'selected':''}>Ice</option>
-        </select>`;
+  <option value="Ice" ${c.temp==='Ice'?'selected':''}>Ice</option>
+  <option value="Hot" ${c.temp==='Hot'?'selected':''}>Hot</option>
+</select>`;
+
       }
       row += `<select data-menu="${k}" class="qty">${[1,2,3,4,5,6,7].map(n=>`<option value="${n}" ${c.qty===n?'selected':''}>${n}</option>`).join('')}</select>
       <strong>Rp${(c.price*c.qty).toLocaleString('id-ID')}</strong></div>`;
@@ -338,6 +342,7 @@ function kirimWA(){
 </script>
 </body>
 </html>
+
 
 
 
