@@ -375,6 +375,18 @@
     window.open(wa,'_blank');
   }
 </script>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const meja = params.get('meja');
+
+  if (meja) {
+    const mejaInput = document.getElementById('meja');
+    mejaInput.value = meja;
+    mejaInput.readOnly = true;     // dikunci
+    mejaInput.style.display = 'none'; // disembunyikan
+  }
+</script>
 
 </body>
 </html>
+
