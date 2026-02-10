@@ -408,33 +408,28 @@ body.vip-gold{
     const wa = `https://wa.me/6281344782047?text=${encodeURIComponent(pesan)}`;
     window.open(wa,'_blank');
   }
+	// ===== AUTO INPUT MEJA & VIP MODE =====
+const params = new URLSearchParams(window.location.search);
+const mejaParam = params.get('meja');
+
+if (mejaParam) {
+  mejaEl.value = mejaParam;
+  mejaEl.readOnly = true;
+  mejaEl.style.display = 'none';
+}
+
+if (mejaParam && mejaParam.toUpperCase().includes('VIP')) {
+  document.body.classList.add('vip-gold');
+
+  const badge = document.createElement('div');
+  badge.className = 'vip-badge';
+  badge.innerText = 'VIP GOLD TABLE';
+  document.querySelector('.container').prepend(badge);
+}
+
 </script>
-<script>
-  const params = new URLSearchParams(window.location.search);
-  const meja = params.get('meja');
-
-  if (meja) {
-    const mejaInput = document.getElementById('meja');
-    mejaInput.value = meja;
-    mejaInput.readOnly = true;     // dikunci
-    mejaInput.style.display = 'none'; // disembunyikan
-  }
-</script>
-<script>
-  const params = new URLSearchParams(window.location.search);
-  const meja = params.get('meja');
-
-  if (meja && meja.toUpperCase().includes('VIP')) {
-    document.body.classList.add('vip-gold');
-
-    const badge = document.createElement('div');
-    badge.className = 'vip-badge';
-    badge.innerText = 'VIP GOLD TABLE';
-    document.querySelector('.container').prepend(badge);
-  }
-</script>
-
 </body>
 </html>
+
 
 
