@@ -182,9 +182,17 @@ button:active{
 </header>
 <div class="card">
 <input id="nama" placeholder="Nama" style="width:100%;margin-bottom:8px">
-<input id="meja" placeholder="No Meja" style="width:100%">
+<div id="displayMeja"
+     style="
+       text-align:center;
+       font-size:20px;
+       font-weight:bold;
+       padding:10px;
+       border-radius:14px;
+       background:#1B5E45;
+       margin-top:8px;">
+  🪑 Meja: -
 </div>
-
 <!-- COFFEE -->
 <div class="card"><h3>☕ Coffee</h3>
 <div class="menu-item"><input type="checkbox" data-type="drink" data-name="Aren Coffee" data-price="28000"><label>Aren Coffee <span class="price">28k</span></label></div>
@@ -404,27 +412,70 @@ Total: Rp${total.toLocaleString('id-ID')}`;
   window.open('https://wa.me/6281344782047?text='+encodeURIComponent(pesan),'_blank');
 }
 <script>
-  // ===============================
-  // AUTO ISI NO MEJA DARI QR CODE
-  // ===============================
-  const params = new URLSearchParams(window.location.search);
-  const mejaParam = params.get('meja');
+/* ===========================
+   AUTO MEJA + VIP SYSTEM
+=========================== */
 
-  if (mejaParam) {
-    const mejaInput = document.getElementById('meja');
+const params = new URLSearchParams(window.location.search);
+const mejaParam = params.get('meja');
+let mejaFinal = 'Unknown';
 
-    // tampilkan lebih rapi
-    mejaInput.value = mejaParam.replace('-', ' ');
+if (mejaParam) {
+  const no = parseInt(mejaParam);
+  const display = document.getElementById('displayMeja');
 
-    // kunci supaya tidak bisa diubah
-    mejaInput.readOnly = true;
-    mejaInput.style.background = '#eaeaea';
+  if (no === 1 || no === 2) {
+    mejaFinal = `VIP ${no}`;
+    display.innerHTML = `⭐ VIP TABLE ${no}`;
+    display.style.background = '#F2C94C';
+    display.style.color = '#1E1E1E';
+  } else if (no >= 3 && no <= 6) {
+    mejaFinal = `Regular ${no}`;
+    display.innerHTML = `🪑 REGULAR TABLE ${no}`;
+  } else {
+    display.innerHTML = '🪑 Meja tidak valid';
   }
+}
+
+/* ===========================
+   OVERRIDE FUNGSI WA
+=========================== */
+
+function kirimWA(){
+  const nama=document.getElementById('nama').value;
+  const payment=document.querySelector('input[name="payment"]:checked')?.value || '-';
+
+  if(!nama || Object.keys(cart).length===0){
+    alert('Lengkapi nama & pesanan');
+    return;
+  }
+
+  let text='', total=0;
+  Object.keys(cart).forEach(k=>{
+    const c=cart[k];
+    const sub=c.price*c.qty;
+    total+=sub;
+    text+=`- ${k} (${c.temp}) x${c.qty} = Rp${sub.toLocaleString('id-ID')}\n`;
+  });
+
+  const pesan=`☕ PESANAN SULAGE CAFFE & BILLYARD
+🪑 Meja: ${mejaFinal}
+👤 Nama: ${nama}
+💳 Pembayaran: ${payment}
+
+Pesanan:
+${text}
+Total: Rp${total.toLocaleString('id-ID')}`;
+
+  window.open(
+    'https://wa.me/6281344782047?text='+encodeURIComponent(pesan),
+    '_blank'
+  );
+}
 </script>
-
-
 </body>
 </html>
+
 
 
 
