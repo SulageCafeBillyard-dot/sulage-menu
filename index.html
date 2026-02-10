@@ -193,6 +193,13 @@ button:active{
        margin-top:8px;">
   🪑 Meja: -
 </div>
+
+<input id="inputMeja"
+       type="number"
+       min="1"
+       placeholder="Masukkan nomor meja"
+       style="width:100%;margin-top:8px;display:none">
+
 <!-- COFFEE -->
 <div class="card"><h3>☕ Coffee</h3>
 <div class="menu-item"><input type="checkbox" data-type="drink" data-name="Aren Coffee" data-price="28000"><label>Aren Coffee <span class="price">28k</span></label></div>
@@ -413,40 +420,52 @@ Total: Rp${total.toLocaleString('id-ID')}`;
 }
 <script>
 /* ===========================
-   AUTO MEJA + VIP SYSTEM
+   AUTO MEJA VIP & REGULAR
 =========================== */
 
 const params = new URLSearchParams(window.location.search);
+const type = params.get('type');     // vip / regular
 const mejaParam = params.get('meja');
-let mejaFinal = 'Unknown';
 
-if (mejaParam) {
-  const no = parseInt(mejaParam);
-  const display = document.getElementById('displayMeja');
+const display = document.getElementById('displayMeja');
+const inputMeja = document.getElementById('inputMeja');
 
-  if (no === 1 || no === 2) {
-    mejaFinal = `VIP ${no}`;
-    display.innerHTML = `⭐ VIP TABLE ${no}`;
-    display.style.background = '#F2C94C';
-    display.style.color = '#1E1E1E';
-  } else if (no >= 3 && no <= 6) {
-    mejaFinal = `Regular ${no}`;
-    display.innerHTML = `🪑 REGULAR TABLE ${no}`;
-  } else {
-    display.innerHTML = '🪑 Meja tidak valid';
-  }
+let mejaFinal = '-';
+
+if (type === 'vip' && mejaParam) {
+  // ===== VIP =====
+  mejaFinal = `VIP ${mejaParam}`;
+  display.innerHTML = `⭐ VIP TABLE ${mejaParam}`;
+  display.style.background = '#F2C94C';
+  display.style.color = '#1E1E1E';
+  inputMeja.style.display = 'none';
+
+} else {
+  // ===== REGULAR =====
+  display.innerHTML = `🪑 REGULAR TABLE`;
+  inputMeja.style.display = 'block';
+
+  inputMeja.addEventListener('input', () => {
+    mejaFinal = inputMeja.value
+      ? `Regular ${inputMeja.value}`
+      : '-';
+  });
 }
 
 /* ===========================
-   OVERRIDE FUNGSI WA
+   KIRIM WA (FINAL)
 =========================== */
-
 function kirimWA(){
-  const nama=document.getElementById('nama').value;
-  const payment=document.querySelector('input[name="payment"]:checked')?.value || '-';
+  const nama = document.getElementById('nama').value;
+  const payment = document.querySelector('input[name="payment"]:checked')?.value || '-';
 
   if(!nama || Object.keys(cart).length===0){
     alert('Lengkapi nama & pesanan');
+    return;
+  }
+
+  if(mejaFinal==='-'){
+    alert('Isi nomor meja');
     return;
   }
 
@@ -473,8 +492,10 @@ Total: Rp${total.toLocaleString('id-ID')}`;
   );
 }
 </script>
+
 </body>
 </html>
+
 
 
 
