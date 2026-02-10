@@ -403,22 +403,29 @@ Total: Rp${total.toLocaleString('id-ID')}`;
 
   window.open('https://wa.me/6281344782047?text='+encodeURIComponent(pesan),'_blank');
 }
-  <script>
-  // ambil parameter dari URL
+<script>
+  // ===============================
+  // AUTO ISI NO MEJA DARI QR CODE
+  // ===============================
   const params = new URLSearchParams(window.location.search);
-  const meja = params.get('meja');
+  const mejaParam = params.get('meja');
 
-  if (meja) {
+  if (mejaParam) {
     const mejaInput = document.getElementById('meja');
-    mejaInput.value = meja;
 
-    // opsional: kunci supaya tidak bisa diubah
+    // tampilkan lebih rapi
+    mejaInput.value = mejaParam.replace('-', ' ');
+
+    // kunci supaya tidak bisa diubah
     mejaInput.readOnly = true;
+    mejaInput.style.background = '#eaeaea';
   }
 </script>
 
+
 </body>
 </html>
+
 
 
 
