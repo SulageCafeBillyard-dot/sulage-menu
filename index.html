@@ -403,9 +403,23 @@ Total: Rp${total.toLocaleString('id-ID')}`;
 
   window.open('https://wa.me/6281344782047?text='+encodeURIComponent(pesan),'_blank');
 }
+  <script>
+  // ambil parameter dari URL
+  const params = new URLSearchParams(window.location.search);
+  const meja = params.get('meja');
+
+  if (meja) {
+    const mejaInput = document.getElementById('meja');
+    mejaInput.value = meja;
+
+    // opsional: kunci supaya tidak bisa diubah
+    mejaInput.readOnly = true;
+  }
 </script>
+
 </body>
 </html>
+
 
 
 
