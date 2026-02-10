@@ -4,6 +4,33 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sulage Caffe & Billyard</title>
 <style>
+	/* ===== VIP GOLD MODE ===== */
+body.vip-gold{
+  background: radial-gradient(circle at top,#3b2f0a,#0e0b02);
+}
+
+.vip-gold .card{
+  background: linear-gradient(180deg,#3A2E08,#2A2206);
+  border: 1px solid rgba(242,201,76,.6);
+}
+
+.vip-gold h3,
+.vip-gold h4{
+  color: #F2C94C;
+}
+
+.vip-gold .price{
+  color: #FFD966;
+}
+
+.vip-badge{
+  text-align:center;
+  font-weight:bold;
+  letter-spacing:2px;
+  color:#F2C94C;
+  margin-bottom:12px;
+}
+
  :root{ --bg:#0E3B2E; /* hijau meja billiard */ --card:#164D3A; /* hijau gelap */ --text:#F5F5F5; /* putih lembut */ --accent:#F2C94C; /* emas / bola billiard */ } *{box-sizing:border-box;font-family:Poppins,Arial,sans-serif} body{margin:0;background:var(--bg);color:var(--text)} .container{max-width:520px;margin:auto;padding:20px} header{ text-align:center; margin-bottom:20px; } .title-main{ font-size:26px; letter-spacing:2px; margin:6px 0; } .title-sub{ font-size:16px; font-weight:500; opacity:.85; } p{ font-size:14px; opacity:.9; } .card{ background:linear-gradient(180deg,#1B5E45,#164D3A); border-radius:18px; padding:14px; margin-bottom:14px; box-shadow:0 10px 24px rgba(0,0,0,.35); } h3,h4{margin:8px 0} .menu-item{display:flex;align-items:center;gap:8px;margin-bottom:6px} .menu-item label{flex:1;display:flex;justify-content:space-between;cursor:pointer} .price{color:var(--accent);font-weight:bold} .menu-row{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-bottom:6px;font-size:14px} select,input[type=checkbox]{padding:4px} .total{text-align:right;font-size:18px;margin-top:10px} button{ width:100%; padding:14px; border:none; border-radius:16px; background:linear-gradient(135deg,#F2C94C,#C9A227); color:#1E1E1E; font-size:18px; font-weight:bold; } .logo-wrap{ display:flex; justify-content:center; margin-bottom:14px; } .logo{ width:180px; max-width:80%; border-radius:16px; box-shadow:0 6px 18px rgba(0,0,0,.25); } .header-logo{ width:100%; margin-bottom:16px; } .logo-full{ width:100%; height:auto; display:block; border-radius:18px; box-shadow:0 8px 22px rgba(0,0,0,.35); } /* KHUSUS HP */ @media (max-width: 600px){ .logo-full{ width:100vw; max-width:100%; margin-left:calc(-50vw + 50%); border-radius:0; } } .hero{ width:100%; aspect-ratio: 16 / 9; /* 🔥 auto tinggi, tidak buang ruang */ max-height:280px; /* batas aman di HP */ background-image:url('logo-sulage.png'); background-repeat:no-repeat; background-position:center; background-size:cover; position:relative; margin-bottom:16px; } /* overlay gelap tipis */ .hero::after{ content:''; position:absolute; inset:0; background:linear-gradient( to bottom, rgba(0,0,0,.1), rgba(0,0,0,.35) ); } /* HP */ @media (max-width:600px){ .hero{ max-height:220px; /* 🔥 jauh lebih ringkas */ aspect-ratio: 4 / 3; } } /* animasi item pesanan */ .menu-row{ animation: slideIn .25s ease; } @keyframes slideIn{ from{ opacity:0; transform:translateY(8px); } to{ opacity:1; transform:translateY(0); } } /* animasi keluar */ .menu-row.removing{ animation: slideOut .2s ease forwards; } @keyframes slideOut{ to{ opacity:0; transform:translateY(-8px); } } .total span{ display:inline-block; transition:transform .2s ease; } .total span.bump{ transform:scale(1.15); } .menu-item input[type=checkbox]:checked + label{ color: var(--accent); transform: scale(1.02); transition: all .2s ease; } button:active{ transform:scale(.96); }
 </style>
 </head>
@@ -374,7 +401,36 @@
     const wa = `https://wa.me/6281344782047?text=${encodeURIComponent(pesan)}`;
     window.open(wa,'_blank');
   }
+<script>
+const params = new URLSearchParams(window.location.search);
+const mejaParam = params.get('meja');
+const isVIP = mejaParam && mejaParam.toUpperCase().includes('VIP');
+
+if(isVIP){
+  // MODE VIP GOLD
+  document.body.classList.add('vip-gold');
+
+  // Badge VIP
+  const badge = document.createElement('div');
+  badge.className = 'vip-badge';
+  badge.innerText = 'VIP GOLD TABLE';
+  document.querySelector('.container').prepend(badge);
+
+  // Auto isi & hide meja
+  const mejaInput = document.getElementById('meja');
+  mejaInput.value = mejaParam;
+  mejaInput.parentElement.style.display = 'none';
+
+  // Markup harga VIP (+10%)
+  document.querySelectorAll('[data-price]').forEach(el=>{
+    const base = parseInt(el.dataset.price);
+    const vipPrice = Math.round(base * 1.1);
+    el.dataset.price = vipPrice;
+  });
+}
 </script>
+
 
 </body>
 </html>
+
