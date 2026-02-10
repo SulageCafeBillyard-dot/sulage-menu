@@ -261,6 +261,120 @@
 		<button onclick="kirimWA()">Konfirmasi ke Admin (WhatsApp)</button>
 	</div>
 </div>
-<script> const checks=document.querySelectorAll('input[type=checkbox]'); const orders=document.getElementById('orders'); const totalEl=document.getElementById('total'); let cart={}; checks.forEach(ch=>{ ch.addEventListener('change',()=>{ const name = ch.dataset.name; const price = +ch.dataset.price; if(ch.checked){ cart[name] = { price, qty: 1, temp: 'Ice', type: ch.dataset.type || 'drink' }; } else { delete cart[name]; // 🔥 INI YANG KURANG } render(); }); }); function render(){ orders.innerHTML=''; let total = 0; Object.keys(cart).forEach(k=>{ const c = cart[k]; total += c.price * c.qty; orders.innerHTML += (()=>{ let row = <div class="menu-row"><span>${k}</span>; if(c.type==='drink'){ row += <select data-menu="${k}" class="temp"> <option value="Ice" ${c.temp==='Ice'?'selected':''}>Ice</option> <option value="Hot" ${c.temp==='Hot'?'selected':''}>Hot</option> </select>; } row += <select data-menu="${k}" class="qty">${[1,2,3,4,5,6,7].map(n=><option value="${n}" ${c.qty===n?'selected':''}>${n}</option>).join('')}</select> <strong>Rp${(c.price*c.qty).toLocaleString('id-ID')}</strong></div>; return row; })(); }); document.querySelectorAll('.temp').forEach(sel=>{ sel.onchange = e => { cart[e.target.dataset.menu].temp = e.target.value; render(); }; }); document.querySelectorAll('.qty').forEach(sel=>{ sel.onchange = e => { cart[e.target.dataset.menu].qty = parseInt(e.target.value); render(); }; }); totalEl.innerText = 'Rp' + total.toLocaleString('id-ID'); totalEl.classList.add('bump'); setTimeout(()=>totalEl.classList.remove('bump'),200); } function kirimWA(){ const nama=document.getElementById('nama').value; const meja=document.getElementById('meja').value || '-'; const payment = document.querySelector('input[name="payment"]:checked')?.value || '-'; if(!nama||Object.keys(cart).length===0){alert('Lengkapi pesanan');return;} let text=''; let total=0; Object.keys(cart).forEach(k=>{const c=cart[k]; const sub=c.price*c.qty; total+=sub; text+=- ${k} (${c.temp}) x${c.qty} = Rp${sub.toLocaleString('id-ID')}\n;}); const pesan=☕ PESANAN SULAGE CAFFE & BILLYARD Nama: ${nama} Meja: ${meja} Pembayaran: ${payment} Pesanan: ${text} Total: Rp${total.toLocaleString('id-ID')}; window.open('https://wa.me/6281344782047?text='+encodeURIComponent(pesan),'_blank'); } </script>
+<script>
+  const checks = document.querySelectorAll('input[type=checkbox]');
+  const orders = document.getElementById('orders');
+  const totalEl = document.getElementById('total');
+  const namaEl = document.getElementById('nama');
+  const mejaEl = document.getElementById('meja');
+
+  let cart = {};
+
+  // checkbox menu
+  checks.forEach(ch=>{
+    ch.addEventListener('change',()=>{
+      const name = ch.dataset.name;
+      const price = +ch.dataset.price;
+      const type = ch.dataset.type;
+
+      if(ch.checked){
+        cart[name] = {
+          price,
+          qty: 1,
+          temp: type === 'drink' ? 'Ice' : '',
+          type
+        };
+      }else{
+        delete cart[name];
+      }
+      render();
+    });
+  });
+
+  function render(){
+    orders.innerHTML = '';
+    let total = 0;
+
+    Object.keys(cart).forEach(name=>{
+      const item = cart[name];
+      const subtotal = item.price * item.qty;
+      total += subtotal;
+
+      orders.insertAdjacentHTML('beforeend', `
+        <div class="menu-row">
+          <span>${name}</span>
+
+          ${
+            item.type === 'drink'
+            ? `<select class="temp" data-name="${name}">
+                <option value="Ice" ${item.temp==='Ice'?'selected':''}>Ice</option>
+                <option value="Hot" ${item.temp==='Hot'?'selected':''}>Hot</option>
+              </select>`
+            : ''
+          }
+
+          <select class="qty" data-name="${name}">
+            ${[1,2,3,4,5].map(q=>`
+              <option value="${q}" ${item.qty===q?'selected':''}>${q}</option>
+            `).join('')}
+          </select>
+
+          <strong>Rp${subtotal.toLocaleString('id-ID')}</strong>
+        </div>
+      `);
+    });
+
+    // event Ice / Hot
+    document.querySelectorAll('.temp').forEach(sel=>{
+      sel.onchange = e=>{
+        cart[e.target.dataset.name].temp = e.target.value;
+      };
+    });
+
+    // event qty
+    document.querySelectorAll('.qty').forEach(sel=>{
+      sel.onchange = e=>{
+        cart[e.target.dataset.name].qty = +e.target.value;
+        render();
+      };
+    });
+
+    totalEl.textContent = 'Rp' + total.toLocaleString('id-ID');
+  }
+
+  function kirimWA(){
+    if(!namaEl.value){
+      alert('Nama belum diisi');
+      return;
+    }
+    if(Object.keys(cart).length === 0){
+      alert('Belum ada pesanan');
+      return;
+    }
+
+    let pesan = `☕ PESANAN SULAGE\n`;
+    pesan += `Nama: ${namaEl.value}\n`;
+    pesan += `Meja: ${mejaEl.value || '-'}\n\n`;
+    pesan += `Pesanan:\n`;
+
+    let total = 0;
+
+    Object.keys(cart).forEach(name=>{
+      const i = cart[name];
+      const sub = i.price * i.qty;
+      total += sub;
+
+      pesan += `- ${name}`;
+      if(i.temp) pesan += ` (${i.temp})`;
+      pesan += ` x${i.qty} = Rp${sub.toLocaleString('id-ID')}\n`;
+    });
+
+    pesan += `\nTotal: Rp${total.toLocaleString('id-ID')}`;
+
+    const wa = `https://wa.me/6281344782047?text=${encodeURIComponent(pesan)}`;
+    window.open(wa,'_blank');
+  }
+</script>
+
 </body>
 </html>
