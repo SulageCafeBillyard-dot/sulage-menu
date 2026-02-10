@@ -1,232 +1,266 @@
-<!DOCTYPE html>
-<html lang="id">
+<!DOCTYPE html><html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sulage Caffe & Billyard</title>
 <style>
-:root{
-  --bg:#0E3B2E;
-  --card:#164D3A;
-  --text:#F5F5F5;
-  --accent:#F2C94C;
-}
-
-*{box-sizing:border-box;font-family:Poppins,Arial,sans-serif}
-body{margin:0;background:var(--bg);color:var(--text)}
-.container{max-width:520px;margin:auto;padding:20px}
-header{text-align:center;margin-bottom:20px}
-
-.title-main{font-size:26px;letter-spacing:2px;margin:6px 0}
-.title-sub{font-size:16px;font-weight:500;opacity:.85}
-p{font-size:14px;opacity:.9}
-
-.card{
-  background:linear-gradient(180deg,#1B5E45,#164D3A);
-  border-radius:18px;
-  padding:14px;
-  margin-bottom:14px;
-  box-shadow:0 10px 24px rgba(0,0,0,.35);
-}
-
-h3,h4{margin:8px 0}
-.menu-item{display:flex;align-items:center;gap:8px;margin-bottom:6px}
-.menu-item label{flex:1;display:flex;justify-content:space-between;cursor:pointer}
-.price{color:var(--accent);font-weight:bold}
-.menu-row{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-bottom:6px;font-size:14px}
-select,input[type=checkbox]{padding:4px}
-.total{text-align:right;font-size:18px;margin-top:10px}
-button{
-  width:100%;
-  padding:14px;
-  border:none;
-  border-radius:16px;
-  background:linear-gradient(135deg,#F2C94C,#C9A227);
-  color:#1E1E1E;
-  font-size:18px;
-  font-weight:bold;
-}
-
-.logo-wrap{display:flex;justify-content:center;margin-bottom:14px}
-.logo{width:180px;max-width:80%;border-radius:16px;box-shadow:0 6px 18px rgba(0,0,0,.25)}
-.header-logo{width:100%;margin-bottom:16px}
-.logo-full{width:100%;height:auto;display:block;border-radius:18px;box-shadow:0 8px 22px rgba(0,0,0,.35)}
-
-@media (max-width:600px){
-  .logo-full{width:100vw;max-width:100%;margin-left:calc(-50vw + 50%);border-radius:0}
-}
-
-.hero{
-  width:100%;
-  aspect-ratio:16/9;
-  max-height:280px;
-  background-image:url('logo-sulage.png');
-  background-repeat:no-repeat;
-  background-position:center;
-  background-size:cover;
-  position:relative;
-  margin-bottom:16px;
-}
-
-.hero::after{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:linear-gradient(to bottom,rgba(0,0,0,.1),rgba(0,0,0,.35));
-}
-
-@media (max-width:600px){
-  .hero{max-height:220px;aspect-ratio:4/3}
-}
-
-.menu-row{animation:slideIn .25s ease}
-@keyframes slideIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0)}}
-.menu-row.removing{animation:slideOut .2s ease forwards}
-@keyframes slideOut{to{opacity:0;transform:translateY(-8px)}}
-
-.total span{display:inline-block;transition:transform .2s ease}
-.total span.bump{transform:scale(1.15)}
-.menu-item input[type=checkbox]:checked + label{color: var(--accent);transform: scale(1.02);transition: all .2s ease}
-button:active{transform:scale(.96)}
+ :root{ --bg:#0E3B2E; /* hijau meja billiard */ --card:#164D3A; /* hijau gelap */ --text:#F5F5F5; /* putih lembut */ --accent:#F2C94C; /* emas / bola billiard */ } *{box-sizing:border-box;font-family:Poppins,Arial,sans-serif} body{margin:0;background:var(--bg);color:var(--text)} .container{max-width:520px;margin:auto;padding:20px} header{ text-align:center; margin-bottom:20px; } .title-main{ font-size:26px; letter-spacing:2px; margin:6px 0; } .title-sub{ font-size:16px; font-weight:500; opacity:.85; } p{ font-size:14px; opacity:.9; } .card{ background:linear-gradient(180deg,#1B5E45,#164D3A); border-radius:18px; padding:14px; margin-bottom:14px; box-shadow:0 10px 24px rgba(0,0,0,.35); } h3,h4{margin:8px 0} .menu-item{display:flex;align-items:center;gap:8px;margin-bottom:6px} .menu-item label{flex:1;display:flex;justify-content:space-between;cursor:pointer} .price{color:var(--accent);font-weight:bold} .menu-row{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-bottom:6px;font-size:14px} select,input[type=checkbox]{padding:4px} .total{text-align:right;font-size:18px;margin-top:10px} button{ width:100%; padding:14px; border:none; border-radius:16px; background:linear-gradient(135deg,#F2C94C,#C9A227); color:#1E1E1E; font-size:18px; font-weight:bold; } .logo-wrap{ display:flex; justify-content:center; margin-bottom:14px; } .logo{ width:180px; max-width:80%; border-radius:16px; box-shadow:0 6px 18px rgba(0,0,0,.25); } .header-logo{ width:100%; margin-bottom:16px; } .logo-full{ width:100%; height:auto; display:block; border-radius:18px; box-shadow:0 8px 22px rgba(0,0,0,.35); } /* KHUSUS HP */ @media (max-width: 600px){ .logo-full{ width:100vw; max-width:100%; margin-left:calc(-50vw + 50%); border-radius:0; } } .hero{ width:100%; aspect-ratio: 16 / 9; /* 🔥 auto tinggi, tidak buang ruang */ max-height:280px; /* batas aman di HP */ background-image:url('logo-sulage.png'); background-repeat:no-repeat; background-position:center; background-size:cover; position:relative; margin-bottom:16px; } /* overlay gelap tipis */ .hero::after{ content:''; position:absolute; inset:0; background:linear-gradient( to bottom, rgba(0,0,0,.1), rgba(0,0,0,.35) ); } /* HP */ @media (max-width:600px){ .hero{ max-height:220px; /* 🔥 jauh lebih ringkas */ aspect-ratio: 4 / 3; } } /* animasi item pesanan */ .menu-row{ animation: slideIn .25s ease; } @keyframes slideIn{ from{ opacity:0; transform:translateY(8px); } to{ opacity:1; transform:translateY(0); } } /* animasi keluar */ .menu-row.removing{ animation: slideOut .2s ease forwards; } @keyframes slideOut{ to{ opacity:0; transform:translateY(-8px); } } .total span{ display:inline-block; transition:transform .2s ease; } .total span.bump{ transform:scale(1.15); } .menu-item input[type=checkbox]:checked + label{ color: var(--accent); transform: scale(1.02); transition: all .2s ease; } button:active{ transform:scale(.96); }
 </style>
 </head>
 <body>
 <div class="container">
-<header class="hero"></header>
-
-<div class="card">
-<input id="nama" placeholder="Nama" style="width:100%;margin-bottom:8px">
-<div id="displayMeja"
-     style="text-align:center;font-size:20px;font-weight:bold;padding:10px;border-radius:14px;background:#1B5E45;margin-top:8px;">
-  🪑 Meja: -
+	<header class="hero"></header>
+	<div class="card">
+		<input id="nama" placeholder="Nama" style="width:100%;margin-bottom:8px"><input id="meja" placeholder="No Meja" style="width:100%"></div>
+	<!-- COFFEE -->
+	<div class="card">
+		<h3>☕ Coffee</h3>
+		<div class="menu-item">
+			<input type="checkbox" data-type="drink" data-name="Aren Coffee" data-price="28000"><label>Aren Coffee <span class="price">28k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="drink" data-name="Hazelnut Coffee" data-price="28000"><label>Hazelnut Coffee <span class="price">28k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="drink" data-name="Pandan Coffee" data-price="28000"><label>Pandan Coffee <span class="price">28k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="drink" data-name="Mocha Latte" data-price="28000"><label>Mocha Latte <span class="price">28k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="drink" data-name="Caffe Latte" data-price="28000"><label>Caffe Latte <span class="price">28k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="drink" data-name="Vanilla Latte" data-price="28000"><label>Vanilla Latte <span class="price">28k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="drink" data-name="Americano" data-price="28000"><label>Americano <span class="price">28k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="drink" data-name="Espresso" data-price="28000"><label>Espresso <span class="price">28k</span></label>
+		</div>
+	</div>
+	<!-- NON COFFEE -->
+	<div class="card">
+		<h3>🥛 Non Coffee</h3>
+		<div class="menu-item">
+			<input type="checkbox" data-type="drink" data-name="Red Velvet" data-price="25000"><label>Red Velvet <span class="price">25k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="drink" data-name="Green Tea" data-price="25000"><label>Green Tea <span class="price">25k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="drink" data-name="Chocolate" data-price="25000"><label>Chocolate <span class="price">25k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="drink" data-name="Vanilla" data-price="25000"><label>Vanilla <span class="price">25k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="drink" data-name="Lemon Tea" data-price="25000"><label>Lemon Tea <span class="price">25k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="drink" data-name="Ice Tea" data-price="25000"><label>Ice Tea <span class="price">25k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="drink" data-name="Avocado" data-price="25000"><label>Avocado <span class="price">25k</span></label>
+		</div>
+	</div>
+	<!-- MANUAL BREW & MOCKTAIL -->
+	<div class="card">
+		<h3>🫖 Manual Brew & Mocktail</h3>
+		<div class="menu-item">
+			<input type="checkbox" data-type="drink" data-name="V60" data-price="35000"><label>V60 <span class="price">35k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="drink" data-name="Japanese Ice Coffee" data-price="35000"><label>Japanese Ice Coffee <span class="price">35k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="drink" data-name="Vietnam Drip" data-price="35000"><label>Vietnam Drip <span class="price">35k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="drink" data-name="Blue Lagoon" data-price="35000"><label>Blue Lagoon <span class="price">35k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="drink" data-name="Sunrise" data-price="35000"><label>Sunrise <span class="price">35k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="drink" data-name="Grand Apple Mojito" data-price="35000"><label>Grand Apple Mojito <span class="price">35k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="drink" data-name="Cinderella Mocktail" data-price="35000"><label>Cinderella Mocktail <span class="price">35k</span></label>
+		</div>
+	</div>
+	<!-- SNACK -->
+	<div class="card">
+		<h3>🍪 Snack</h3>
+		<div class="menu-item">
+			<input type="checkbox" data-type="food" data-name="Kentang Goreng" data-price="25000"><label>Kentang Goreng <span class="price">25k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="food" data-name="Sosis Goreng / Bakar" data-price="25000"><label>Sosis Goreng / Bakar <span class="price">25k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="food" data-name="Nugget Goreng" data-price="25000"><label>Nugget Goreng <span class="price">25k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="food" data-name="Roti Bakar" data-price="25000"><label>Roti Bakar <span class="price">25k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="food" data-name="Pisang Coklat" data-price="20000"><label>Pisang Coklat <span class="price">20k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="food" data-name="Pisang Coklat Keju" data-price="25000"><label>Pisang Coklat Keju <span class="price">25k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="food" data-name="Mendoan" data-price="20000"><label>Mendoan <span class="price">20k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="food" data-name="Singkong Goreng" data-price="20000"><label>Singkong Goreng <span class="price">20k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="food" data-name="Lontar" data-price="15000"><label>Lontar <span class="price">15k</span></label>
+		</div>
+	</div>
+	<!-- MAIN COURSE -->
+	<div class="card">
+		<h3>🍽 Main Course</h3>
+		<h4>🍗 Ayam & Bebek</h4>
+		<div class="menu-item">
+			<input type="checkbox" data-type="food" data-name="Ayam Lalapan" data-price="40000"><label>Ayam Lalapan <span class="price">40k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="food" data-name="Ayam Bakar" data-price="40000"><label>Ayam Bakar <span class="price">40k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="food" data-name="Bebek Lalapan" data-price="45000"><label>Bebek Lalapan <span class="price">45k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="food" data-name="Bebek Bakar" data-price="45000"><label>Bebek Bakar <span class="price">45k</span></label>
+		</div>
+		<h4>🐟 Ikan</h4>
+		<div class="menu-item">
+			<input type="checkbox" data-type="food" data-name="Ikan Mujair Goreng" data-price="45000"><label>Ikan Mujair Goreng <span class="price">45k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="food" data-name="Ikan Mujair Bakar" data-price="45000"><label>Ikan Mujair Bakar <span class="price">45k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="food" data-name="Ikan Laut Goreng" data-price="45000"><label>Ikan Laut Goreng <span class="price">45k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="food" data-name="Ikan Laut Bakar" data-price="45000"><label>Ikan Laut Bakar <span class="price">45k</span></label>
+		</div>
+		<h4>🍲 Sup</h4>
+		<div class="menu-item">
+			<input type="checkbox" data-type="food" data-name="Sup Ayam" data-price="40000"><label>Sup Ayam <span class="price">40k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="food" data-name="Sup Ikan" data-price="50000"><label>Sup Ikan <span class="price">50k</span></label>
+		</div>
+		<h4>🥬 Sayur</h4>
+		<div class="menu-item">
+			<input type="checkbox" data-type="food" data-name="Cah Kangkung Goreng" data-price="15000"><label>Cah Kangkung Goreng <span class="price">15k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="food" data-name="Cah Kangkung Bunga Pepaya" data-price="17000"><label>Cah Kangkung Bunga Pepaya <span class="price">17k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="food" data-name="Cah Kangkung Seafood" data-price="20000"><label>Cah Kangkung Seafood <span class="price">20k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="food" data-name="Cah Touge" data-price="15000"><label>Cah Touge <span class="price">15k</span></label>
+		</div>
+		<h4>🍜 Kwetiaw</h4>
+		<div class="menu-item">
+			<input type="checkbox" data-type="food" data-name="Kwetiaw Goreng Ayam" data-price="35000"><label>Kwetiaw Goreng Ayam <span class="price">35k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="food" data-name="Kwetiaw Goreng Seafood" data-price="45000"><label>Kwetiaw Goreng Seafood <span class="price">45k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="food" data-name="Kwetiaw Kuah Ayam" data-price="35000"><label>Kwetiaw Kuah Ayam <span class="price">35k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="food" data-name="Kwetiaw Kuah Seafood" data-price="45000"><label>Kwetiaw Kuah Seafood <span class="price">45k</span></label>
+		</div>
+		<h4>🦐 Udang</h4>
+		<div class="menu-item">
+			<input type="checkbox" data-type="food" data-name="Udang Saus Asam Manis" data-price="45000"><label>Udang Saus Asam Manis <span class="price">45k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="food" data-name="Udang Saus Asam Pedas" data-price="45000"><label>Udang Saus Asam Pedas <span class="price">45k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="food" data-name="Udang Saus Tiram" data-price="45000"><label>Udang Saus Tiram <span class="price">45k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="food" data-name="Udang Goreng Mentega" data-price="45000"><label>Udang Goreng Mentega <span class="price">45k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="food" data-name="Udang Goreng Tepung" data-price="45000"><label>Udang Goreng Tepung <span class="price">45k</span></label>
+		</div>
+		<h4>🦑 Cumi</h4>
+		<div class="menu-item">
+			<input type="checkbox" data-type="food" data-name="Cumi Saus Asam Manis" data-price="45000"><label>Cumi Saus Asam Manis <span class="price">45k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="food" data-name="Cumi Saus Asam Pedas" data-price="45000"><label>Cumi Saus Asam Pedas <span class="price">45k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="food" data-name="Cumi Saus Tiram" data-price="45000"><label>Cumi Saus Tiram <span class="price">45k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="food" data-name="Cumi Goreng Mentega" data-price="45000"><label>Cumi Goreng Mentega <span class="price">45k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="food" data-name="Cumi Goreng Tepung" data-price="45000"><label>Cumi Goreng Tepung <span class="price">45k</span></label>
+		</div>
+		<h4>🍛 Nasi Goreng</h4>
+		<div class="menu-item">
+			<input type="checkbox" data-type="food" data-name="Nasi Goreng Ayam" data-price="25000"><label>Nasi Goreng Ayam <span class="price">25k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="food" data-name="Nasi Goreng Seafood" data-price="35000"><label>Nasi Goreng Seafood <span class="price">35k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="food" data-name="Nasi Goreng Kampung" data-price="20000"><label>Nasi Goreng Kampung <span class="price">20k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="food" data-name="Nasi Goreng Ikan Asin" data-price="20000"><label>Nasi Goreng Ikan Asin <span class="price">20k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="food" data-name="Nasi Goreng Spesial" data-price="45000"><label>Nasi Goreng Spesial <span class="price">45k</span></label>
+		</div>
+		<h4>🍝 Mie</h4>
+		<div class="menu-item">
+			<input type="checkbox" data-type="food" data-name="Mie Goreng Ayam" data-price="25000"><label>Mie Goreng Ayam <span class="price">25k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="food" data-name="Mie Goreng Seafood" data-price="35000"><label>Mie Goreng Seafood <span class="price">35k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="food" data-name="Mie Kuah Ayam" data-price="25000"><label>Mie Kuah Ayam <span class="price">25k</span></label>
+		</div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="food" data-name="Mie Kuah Seafood" data-price="35000"><label>Mie Kuah Seafood <span class="price">35k</span></label>
+		</div>
+	</div>
+	<div class="card">
+		<h3>📝 Detail Pesanan</h3>
+		<div id="orders"></div>
+		<div class="menu-item">
+			<input type="checkbox" data-type="food" data-name="Tambah Nasi" data-price="5000"><label>Tambah Nasi <span class="price">5k</span></label>
+		</div>
+		<h4>💳 Metode Pembayaran</h4>
+		<label><input type="radio" name="payment" value="Cash" checked>Cash</label><br>
+		<label><input type="radio" name="payment" value="Transfer">Transfer</label><br>
+		<label><input type="radio" name="payment" value="QRIS">QR / QRIS</label><textarea id="catatan" placeholder="Catatan (pedas, less sugar, dll)" style="width:100%;margin-top:8px"></textarea>
+		<div class="total">
+			Total: <span id="total">Rp0</span>
+		</div>
+		<button onclick="kirimWA()">Konfirmasi ke Admin (WhatsApp)</button>
+	</div>
 </div>
-<input id="inputMeja" type="number" min="1" placeholder="Masukkan nomor meja" style="width:100%;margin-top:8px;display:none">
-</div>
-
-<!-- Menu Items (singkat contoh, bisa diisi lengkap) -->
-<div class="card"><h3>☕ Coffee</h3>
-<div class="menu-item"><input type="checkbox" data-type="drink" data-name="Aren Coffee" data-price="28000"><label>Aren Coffee <span class="price">28k</span></label></div>
-<div class="menu-item"><input type="checkbox" data-type="drink" data-name="Hazelnut Coffee" data-price="28000"><label>Hazelnut Coffee <span class="price">28k</span></label></div>
-</div>
-
-<div class="card">
-<h3>📝 Detail Pesanan</h3>
-<div id="orders"></div>
-<h4>💳 Metode Pembayaran</h4>
-<label><input type="radio" name="payment" value="Cash" checked> Cash</label><br>
-<label><input type="radio" name="payment" value="Transfer"> Transfer</label><br>
-<label><input type="radio" name="payment" value="QRIS"> QR / QRIS</label>
-<textarea id="catatan" placeholder="Catatan (pedas, less sugar, dll)" style="width:100%;margin-top:8px"></textarea>
-<div class="total">Total: <span id="total">Rp0</span></div>
-<button onclick="kirimWA()">Konfirmasi ke Admin (WhatsApp)</button>
-</div>
-</div>
-
-<script>
-// ========================
-// CART & PESANAN
-// ========================
-const checks=document.querySelectorAll('input[type=checkbox]');
-const orders=document.getElementById('orders');
-const totalEl=document.getElementById('total');
-let cart={};
-
-checks.forEach(ch=>{
-  ch.addEventListener('change',()=>{
-    const name=ch.dataset.name;
-    const price=+ch.dataset.price;
-    if(ch.checked){
-      cart[name]={price,qty:1,temp:'Ice',type:ch.dataset.type||'drink'};
-    } else { delete cart[name]; }
-    render();
-  });
-});
-
-function render(){
-  orders.innerHTML='';
-  let total=0;
-  Object.keys(cart).forEach(k=>{
-    const c=cart[k];
-    total += c.price*c.qty;
-    orders.innerHTML += `<div class="menu-row"><span>${k}</span>
-      ${c.type==='drink'?`<select data-menu="${k}" class="temp">
-        <option value="Ice" ${c.temp==='Ice'?'selected':''}>Ice</option>
-        <option value="Hot" ${c.temp==='Hot'?'selected':''}>Hot</option>
-      </select>`:''}
-      <select data-menu="${k}" class="qty">${[1,2,3,4,5,6,7].map(n=>`<option value="${n}" ${c.qty===n?'selected':''}>${n}</option>`).join('')}</select>
-      <strong>Rp${(c.price*c.qty).toLocaleString('id-ID')}</strong></div>`;
-  });
-
-  document.querySelectorAll('.temp').forEach(sel=>{
-    sel.onchange=e=>{cart[e.target.dataset.menu].temp=e.target.value; render();}
-  });
-  document.querySelectorAll('.qty').forEach(sel=>{
-    sel.onchange=e=>{cart[e.target.dataset.menu].qty=parseInt(e.target.value); render();}
-  });
-
-  totalEl.innerText='Rp'+total.toLocaleString('id-ID');
-  totalEl.classList.add('bump');
-  setTimeout(()=>totalEl.classList.remove('bump'),200);
-}
-
-// ========================
-// AUTO MEJA VIP & REGULAR
-// ========================
-const params=new URLSearchParams(window.location.search);
-const type=params.get('type'); // vip/regular
-const mejaParam=params.get('meja');
-const display=document.getElementById('displayMeja');
-const inputMeja=document.getElementById('inputMeja');
-let mejaFinal='-';
-
-if(type==='vip' && mejaParam){
-  mejaFinal=`VIP ${mejaParam}`;
-  display.innerHTML=`⭐ VIP TABLE ${mejaParam}`;
-  display.style.background='#F2C94C';
-  display.style.color='#1E1E1E';
-  inputMeja.style.display='none';
-} else {
-  display.innerHTML=`🪑 REGULAR TABLE`;
-  inputMeja.style.display='block';
-  inputMeja.addEventListener('input',()=>{
-    if(inputMeja.value){
-      mejaFinal=`Regular ${inputMeja.value}`;
-      display.innerHTML=`🪑 REGULAR TABLE ${inputMeja.value}`;
-    } else {
-      mejaFinal='-';
-      display.innerHTML=`🪑 REGULAR TABLE`;
-    }
-  });
-}
-
-// ========================
-// KIRIM PESAN WA
-// ========================
-function kirimWA(){
-  const nama=document.getElementById('nama').value;
-  const payment=document.querySelector('input[name="payment"]:checked')?.value||'-';
-  if(!nama||Object.keys(cart).length===0){alert('Lengkapi nama & pesanan');return;}
-  if(mejaFinal==='-'){alert('Isi nomor meja');return;}
-
-  let text='',total=0;
-  Object.keys(cart).forEach(k=>{
-    const c=cart[k];
-    const sub=c.price*c.qty;
-    total+=sub;
-    text+=`- ${k} (${c.temp}) x${c.qty} = Rp${sub.toLocaleString('id-ID')}\n`;
-  });
-
-  const pesan=`☕ PESANAN SULAGE CAFFE & BILLYARD
-🪑 Meja: ${mejaFinal}
-👤 Nama: ${nama}
-💳 Pembayaran: ${payment}
-
-Pesanan:
-${text}
-Total: Rp${total.toLocaleString('id-ID')}`;
-
-  window.open('https://wa.me/6281344782047?text='+encodeURIComponent(pesan),'_blank');
-}
-</script>
+<script> const checks=document.querySelectorAll('input[type=checkbox]'); const orders=document.getElementById('orders'); const totalEl=document.getElementById('total'); let cart={}; checks.forEach(ch=>{ ch.addEventListener('change',()=>{ const name = ch.dataset.name; const price = +ch.dataset.price; if(ch.checked){ cart[name] = { price, qty: 1, temp: 'Ice', type: ch.dataset.type || 'drink' }; } else { delete cart[name]; // 🔥 INI YANG KURANG } render(); }); }); function render(){ orders.innerHTML=''; let total = 0; Object.keys(cart).forEach(k=>{ const c = cart[k]; total += c.price * c.qty; orders.innerHTML += (()=>{ let row = <div class="menu-row"><span>${k}</span>; if(c.type==='drink'){ row += <select data-menu="${k}" class="temp"> <option value="Ice" ${c.temp==='Ice'?'selected':''}>Ice</option> <option value="Hot" ${c.temp==='Hot'?'selected':''}>Hot</option> </select>; } row += <select data-menu="${k}" class="qty">${[1,2,3,4,5,6,7].map(n=><option value="${n}" ${c.qty===n?'selected':''}>${n}</option>).join('')}</select> <strong>Rp${(c.price*c.qty).toLocaleString('id-ID')}</strong></div>; return row; })(); }); document.querySelectorAll('.temp').forEach(sel=>{ sel.onchange = e => { cart[e.target.dataset.menu].temp = e.target.value; render(); }; }); document.querySelectorAll('.qty').forEach(sel=>{ sel.onchange = e => { cart[e.target.dataset.menu].qty = parseInt(e.target.value); render(); }; }); totalEl.innerText = 'Rp' + total.toLocaleString('id-ID'); totalEl.classList.add('bump'); setTimeout(()=>totalEl.classList.remove('bump'),200); } function kirimWA(){ const nama=document.getElementById('nama').value; const meja=document.getElementById('meja').value || '-'; const payment = document.querySelector('input[name="payment"]:checked')?.value || '-'; if(!nama||Object.keys(cart).length===0){alert('Lengkapi pesanan');return;} let text=''; let total=0; Object.keys(cart).forEach(k=>{const c=cart[k]; const sub=c.price*c.qty; total+=sub; text+=- ${k} (${c.temp}) x${c.qty} = Rp${sub.toLocaleString('id-ID')}\n;}); const pesan=☕ PESANAN SULAGE CAFFE & BILLYARD Nama: ${nama} Meja: ${meja} Pembayaran: ${payment} Pesanan: ${text} Total: Rp${total.toLocaleString('id-ID')}; window.open('https://wa.me/6281344782047?text='+encodeURIComponent(pesan),'_blank'); } </script>
 </body>
 </html>
