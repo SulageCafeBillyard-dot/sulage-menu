@@ -376,38 +376,47 @@ body.vip-gold{
     totalEl.textContent = 'Rp' + total.toLocaleString('id-ID');
   }
 
-  function kirimWA(){
-    if(!namaEl.value){
-      alert('Nama belum diisi');
-      return;
-    }
-    if(Object.keys(cart).length === 0){
-      alert('Belum ada pesanan');
-      return;
-    }
-
-    let pesan = `☕ PESANAN SULAGE\n`;
-    pesan += `Nama: ${namaEl.value}\n`;
-    pesan += `Meja: ${mejaEl.value || '-'}\n\n`;
-    pesan += `Pesanan:\n`;
-
-    let total = 0;
-
-    Object.keys(cart).forEach(name=>{
-      const i = cart[name];
-      const sub = i.price * i.qty;
-      total += sub;
-
-      pesan += `- ${name}`;
-      if(i.temp) pesan += ` (${i.temp})`;
-      pesan += ` x${i.qty} = Rp${sub.toLocaleString('id-ID')}\n`;
-    });
-
-    pesan += `\nTotal: Rp${total.toLocaleString('id-ID')}`;
-
-    const wa = `https://wa.me/6285183873665?text=${encodeURIComponent(pesan)}`;
-    window.open(wa,'_blank');
+function kirimWA(){
+  if(!namaEl.value){
+    alert('Nama belum diisi');
+    return;
   }
+  if(Object.keys(cart).length === 0){
+    alert('Belum ada pesanan');
+    return;
+  }
+
+  const payment = document.querySelector('input[name="payment"]:checked').value;
+  const catatan = document.getElementById('catatan').value;
+
+  let pesan = `☕ PESANAN SULAGE\n`;
+  pesan += `Nama: ${namaEl.value}\n`;
+  pesan += `Meja: ${mejaEl.value || '-'}\n\n`;
+  pesan += `Pesanan:\n`;
+
+  let total = 0;
+
+  Object.keys(cart).forEach(name=>{
+    const i = cart[name];
+    const sub = i.price * i.qty;
+    total += sub;
+
+    pesan += `- ${name}`;
+    if(i.temp) pesan += ` (${i.temp})`;
+    pesan += ` x${i.qty} = Rp${sub.toLocaleString('id-ID')}\n`;
+  });
+
+  pesan += `\nMetode Pembayaran: ${payment}\n`;
+
+  if(catatan){
+    pesan += `Catatan: ${catatan}\n`;
+  }
+
+  pesan += `\nTotal: Rp${total.toLocaleString('id-ID')}`;
+
+  const wa = `https://wa.me/6285183873665?text=${encodeURIComponent(pesan)}`;
+  window.open(wa,'_blank');
+}
 	// ===== AUTO INPUT MEJA & VIP MODE =====
 const params = new URLSearchParams(window.location.search);
 const mejaParam = params.get('meja');
@@ -430,6 +439,7 @@ if (mejaParam && mejaParam.toUpperCase().includes('VIP')) {
 </script>
 </body>
 </html>
+
 
 
 
